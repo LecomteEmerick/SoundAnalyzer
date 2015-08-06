@@ -3,6 +3,15 @@
 
 #pragma comment (lib, "fmod_vc.lib")
 
+#if _WIN32
+#include <Windows.h>
+#define FREEGLUT_LIB_PRAGMAS 0
+#pragma comment(lib, "freeglut.lib")
+#pragma comment(lib, "opengl32.lib")
+#pragma comment(lib, "glew32s.lib")
+#pragma comment(lib, "glu32.lib")
+#endif
+
 #include "fmod.hpp"
 #include "SpectrumData.h"
 #include "OpenGLRenderer.h"
@@ -78,7 +87,8 @@ void getSpectrum(char* pathToSound, int windowSize, SoundSpectrum* outSpectrum)
 int main(int argc, char **argv)
 {
 	OpenGLRenderer::Initialize(argc, argv);
+	OpenGLRenderer::Start();
 	//SoundSpectrum Spectrum;
 	//getSpectrum("C:\\Users\\elecomte\\Documents\\Visual Studio 2013\\Projects\\SoundAnalyzer\\09 Avantasia.ogg", 8192, &Spectrum);
-	system("pause");
+	//system("pause");
 }

@@ -13,24 +13,57 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\common">
+      <UniqueIdentifier>{148c6ada-cb21-49fb-90cf-f9dbdefdcbe3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\common">
+      <UniqueIdentifier>{cd136148-f54d-43bd-b842-a743d0e2e4eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\SoundAnalysis">
+      <UniqueIdentifier>{f20a7e3f-e61e-4879-a743-0bd8cbfaed1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\OpenGL">
+      <UniqueIdentifier>{26b3eae1-cfca-4aeb-9365-3748c59ea759}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\OpenGL">
+      <UniqueIdentifier>{d5039e66-3f3c-42a6-a967-ca17f2775a0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="common\EsgiShader.cpp">
+      <Filter>Fichiers sources\common</Filter>
+    </ClCompile>
     <ClCompile Include="OpenGLRenderer.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>Fichiers sources\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="Landmark.cpp">
+      <Filter>Fichiers sources\OpenGL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common\EsgiShader.h">
+      <Filter>Fichiers d%27en-tête\common</Filter>
+    </ClInclude>
     <ClInclude Include="SpectrumData.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
     </ClInclude>
     <ClInclude Include="DrawableItem.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="OpenGLRenderer.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Fichiers d%27en-tête\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="Landmark.h">
+      <Filter>Fichiers d%27en-tête\OpenGL</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

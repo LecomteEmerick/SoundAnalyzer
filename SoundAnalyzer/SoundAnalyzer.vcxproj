@@ -44,7 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\Libs\glew\include\GL;..\Libs\freeglut\include\GL;..\Libs\FMod;..\Libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Libs\glm\glm;..\Libs\glew\include\GL;..\Libs\freeglut\include\GL;..\Libs\FMod;..\Libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -67,11 +67,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="common\EsgiShader.cpp" />
+    <ClCompile Include="Landmark.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="OpenGLRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common\EsgiShader.h" />
     <ClInclude Include="DrawableItem.h" />
+    <ClInclude Include="Landmark.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="OpenGLRenderer.h" />
     <ClInclude Include="SpectrumData.h" />
   </ItemGroup>
