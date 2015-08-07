@@ -53,6 +53,8 @@ void OpenGLRenderer::Initialize(int argc, char* argv[])
 	glfwMakeContextCurrent(OpenGLRenderer::window);
 	glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
 	
+	glfwSetKeyCallback(window, KeyboardFunc);
+
 	OpenGLRenderer::mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
 	/*glutInit(&argc, argv);
@@ -166,30 +168,18 @@ void OpenGLRenderer::MouseFunc(int button, int state, int x, int y)
 	}
 }
 
-void OpenGLRenderer::KeyboardFunc(unsigned char key, int x, int y)
+void OpenGLRenderer::KeyboardFunc(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	switch (key)
-	{
-		case 27 :
-			OpenGLRenderer::Close();
-			break;
-		case 'z':
-			MainCamera.offsetPosition(Time::GetSecondElapsed() * CameraSpeed * MainCamera.forward());
-			//OpenGLRenderer::zOffset += OpenGLRenderer::speed;
-			break;
-		case 's':
-			MainCamera.offsetPosition(Time::GetSecondElapsed() * CameraSpeed * -MainCamera.forward());
-			//OpenGLRenderer::zOffset -= OpenGLRenderer::speed;
-			break;
-		case 'q':
-			MainCamera.offsetPosition(Time::GetSecondElapsed() * CameraSpeed * -MainCamera.right());
-			//OpenGLRenderer::xOffset -= OpenGLRenderer::speed;
-			break;
-		case 'd':
-			MainCamera.offsetPosition(Time::GetSecondElapsed() * CameraSpeed * MainCamera.right());
-			//OpenGLRenderer::xOffset += OpenGLRenderer::speed;
-			break;
-	}
+	if(key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		OpenGLRenderer::Close();
+	if (key == GLFW_KEY_W && action == GLFW_PRESS)
+		MainCamera.offsetPosition(Time::GetSecondElapsed() * CameraSpeed * MainCamera.forward());
+	if (key == GLFW_KEY_S && action == GLFW_PRESS)
+		MainCamera.offsetPosition(Time::GetSecondElapsed() * CameraSpeed * -MainCamera.forward());
+	if (key == GLFW_KEY_A && action == GLFW_PRESS)
+		MainCamera.offsetPosition(Time::GetSecondElapsed() * CameraSpeed * -MainCamera.right());
+	if (key == GLFW_KEY_D && action == GLFW_PRESS)
+		MainCamera.offsetPosition(Time::GetSecondElapsed() * CameraSpeed * MainCamera.right());
 }
 
 void OpenGLRenderer::MotionFunc(int x, int y)

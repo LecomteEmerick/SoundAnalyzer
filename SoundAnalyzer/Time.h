@@ -15,6 +15,6 @@ public:
 private:
 	static float	time_;
 	static bool		isStarted_;
-	static int	previousTime_;
+	static float	previousTime_;
 };
 

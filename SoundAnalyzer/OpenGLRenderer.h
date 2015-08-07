@@ -25,7 +25,7 @@ public:
 
 	static void			DisplayFunc();
 	static void			MouseFunc(int button, int state, int x, int y);
-	static void			KeyboardFunc(unsigned char key, int x, int y);
+	static void			KeyboardFunc(GLFWwindow* window, int key, int scancode, int action, int mods);
 	static void			WheelFunc(int button, int dir, int x, int y);
 	static void			MotionFunc(int x, int y);
 private:
