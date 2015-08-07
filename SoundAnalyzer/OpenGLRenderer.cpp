@@ -3,6 +3,13 @@
 #include "Landmark.h"
 
 std::vector<const std::shared_ptr<DrawableItem>> OpenGLRenderer::DrawableElements;
+
+const GLFWvidmode* OpenGLRenderer::mode;
+GLFWwindow*	OpenGLRenderer::window;
+bool OpenGLRenderer::ContinueMainLoop;
+
+Camera OpenGLRenderer::MainCamera;
+float OpenGLRenderer::CameraSpeed;
 float OpenGLRenderer::depth;
 float OpenGLRenderer::xOffset;
 float OpenGLRenderer::zOffset;
@@ -36,8 +43,19 @@ void OpenGLRenderer::Initialize(int argc, char* argv[])
 	OpenGLRenderer::xAngleUnit = 360.0f / windowWidth;
 	OpenGLRenderer::yAngleUnit = 360.0f / windowHeight;
 
+	OpenGLRenderer::MainCamera = Camera();
+	OpenGLRenderer::MainCamera.setPosition(glm::vec3(0.0f, 0.0f, 10.0f));
+	OpenGLRenderer::CameraSpeed = 1.0f;
 
-	glutInit(&argc, argv);
+	glfwInit();
+
+	OpenGLRenderer::window = glfwCreateWindow(OpenGLRenderer::windowWidth, OpenGLRenderer::windowHeight, "Sound Analyzer", NULL, NULL);
+	glfwMakeContextCurrent(OpenGLRenderer::window);
+	glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+	
+	OpenGLRenderer::mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+
+	/*glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH);
 	glutInitWindowSize(windowWidth, windowHeight);
 	glutCreateWindow("Sound Analyzer");
@@ -50,7 +68,7 @@ void OpenGLRenderer::Initialize(int argc, char* argv[])
 	glutMouseFunc(MouseFunc);
 	glutKeyboardFunc(KeyboardFunc);
 	glutMouseWheelFunc(WheelFunc);
-	glutMotionFunc(MotionFunc);
+	glutMotionFunc(MotionFunc);*/
 }
 
 void OpenGLRenderer::Start()
@@ -67,7 +85,27 @@ void OpenGLRenderer::Start()
 
 	//OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Map()));
 	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Landmark()));
-	glutMainLoop();
+
+	Time::Start();
+
+	OpenGLRenderer::EnterMainLoop();
+}
+
+void OpenGLRenderer::EnterMainLoop()
+{
+	OpenGLRenderer::ContinueMainLoop = true;
+	while (!glfwWindowShouldClose(OpenGLRenderer::window) && OpenGLRenderer::ContinueMainLoop)
+	{
+		OpenGLRenderer::DisplayFunc();
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
+	glfwTerminate();
+}
+
+void OpenGLRenderer::ExitMainLoop()
+{
+	OpenGLRenderer::ContinueMainLoop = false;
 }
 
 void OpenGLRenderer::RegisterElement(const std::shared_ptr<DrawableItem> item)
@@ -77,7 +115,7 @@ void OpenGLRenderer::RegisterElement(const std::shared_ptr<DrawableItem> item)
 
 void OpenGLRenderer::Close()
 {
-	glutLeaveMainLoop();
+	OpenGLRenderer::ExitMainLoop();
 }
 
 /*void OpenGLRenderer::Restart()
@@ -89,22 +127,25 @@ void OpenGLRenderer::Close()
 
 void OpenGLRenderer::DisplayFunc()
 {
-	glViewport(0, 0, glutGet(GLUT_WINDOW_WIDTH), glutGet(GLUT_WINDOW_HEIGHT));
+	Time::Update();
+
+	glViewport(0, 0, OpenGLRenderer::mode->width, OpenGLRenderer::mode->height);
 	glClearColor(0.f, 0.f, 0.0f, 1.0f);
 	glClearDepth(1.F);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	float w = (float)glutGet(GLUT_WINDOW_WIDTH);
-	float h = (float)glutGet(GLUT_WINDOW_HEIGHT);
+	float w = (float)OpenGLRenderer::mode->width;
+	float h = (float)OpenGLRenderer::mode->height;
 
-	glm::mat4 Projection = glm::perspective(45.0f, w / h, 0.1f, 1000.f);
+	//glm::mat4 Projection = glm::perspective(45.0f, w / h, 0.1f, 1000.f);
+	//glm::mat4 View = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, OpenGLRenderer::depth));
 
-	glm::mat4 View = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, OpenGLRenderer::depth));
-
+	glm::mat4 Projection = MainCamera.projection();
+	glm::mat4 View = MainCamera.view();
 	glm::mat4 World = glm::mat4(1.0f);
-	World = glm::translate(World, glm::vec3(OpenGLRenderer::xOffset, 0.0f, OpenGLRenderer::zOffset));
-	World = glm::rotate(World, OpenGLRenderer::yAngle, glm::vec3(0.0f, 1.0f, 0.0f));
-	World = glm::rotate(World, OpenGLRenderer::xAngle, glm::vec3(1.0f, 0.0f, 0.0f));
+	//World = glm::translate(World, glm::vec3(OpenGLRenderer::xOffset, 0.0f, OpenGLRenderer::zOffset));
+	//World = glm::rotate(World, OpenGLRenderer::yAngle, glm::vec3(0.0f, 1.0f, 0.0f));
+	//World = glm::rotate(World, OpenGLRenderer::xAngle, glm::vec3(1.0f, 0.0f, 0.0f));
 
 
 	for (auto element : OpenGLRenderer::DrawableElements)
@@ -112,16 +153,16 @@ void OpenGLRenderer::DisplayFunc()
 		element.get()->Draw(Projection,View,World,0);
 	}
 
-	glutSwapBuffers();
+	//glutSwapBuffers();
 }
 
 void OpenGLRenderer::MouseFunc(int button, int state, int x, int y)
 {
-	mouseDown = state == GLUT_DOWN;
+	//mouseDown = state == GLUT_DOWN;
 	if (mouseDown)
 	{
-		OpenGLRenderer::previousMousePosX = x;
-		OpenGLRenderer::previousMousePosY = y;
+		//OpenGLRenderer::previousMousePosX = x;
+		//OpenGLRenderer::previousMousePosY = y;
 	}
 }
 
@@ -133,19 +174,22 @@ void OpenGLRenderer::KeyboardFunc(unsigned char key, int x, int y)
 			OpenGLRenderer::Close();
 			break;
 		case 'z':
-			OpenGLRenderer::zOffset += OpenGLRenderer::speed;
+			MainCamera.offsetPosition(Time::GetSecondElapsed() * CameraSpeed * MainCamera.forward());
+			//OpenGLRenderer::zOffset += OpenGLRenderer::speed;
 			break;
 		case 's':
-			OpenGLRenderer::zOffset -= OpenGLRenderer::speed;
+			MainCamera.offsetPosition(Time::GetSecondElapsed() * CameraSpeed * -MainCamera.forward());
+			//OpenGLRenderer::zOffset -= OpenGLRenderer::speed;
 			break;
 		case 'q':
-			OpenGLRenderer::xOffset -= OpenGLRenderer::speed;
+			MainCamera.offsetPosition(Time::GetSecondElapsed() * CameraSpeed * -MainCamera.right());
+			//OpenGLRenderer::xOffset -= OpenGLRenderer::speed;
 			break;
 		case 'd':
-			OpenGLRenderer::xOffset += OpenGLRenderer::speed;
+			MainCamera.offsetPosition(Time::GetSecondElapsed() * CameraSpeed * MainCamera.right());
+			//OpenGLRenderer::xOffset += OpenGLRenderer::speed;
 			break;
 	}
-	glutPostRedisplay();
 }
 
 void OpenGLRenderer::MotionFunc(int x, int y)
@@ -156,14 +200,7 @@ void OpenGLRenderer::MotionFunc(int x, int y)
 			OpenGLRenderer::xAngle += (y - OpenGLRenderer::previousMousePosY) * yAngleUnit / 10;//OpenGLRenderer::previousMousePosY < y ? -yAngleUnit : yAngleUnit;
 		if (OpenGLRenderer::previousMousePosX != x)
 			OpenGLRenderer::yAngle += (x - OpenGLRenderer::previousMousePosX) * xAngleUnit / 10;//OpenGLRenderer::previousMousePosX < x ? -xAngleUnit : xAngleUnit;
-		OpenGLRenderer::previousMousePosY = y;
-		OpenGLRenderer::previousMousePosX = x;
-		glutPostRedisplay();
+		//OpenGLRenderer::previousMousePosY = y;
+		//OpenGLRenderer::previousMousePosX = x;
 	}
-}
-
-void OpenGLRenderer::WheelFunc(int button, int dir, int x, int y)
-{
-	//OpenGLRenderer::depth += dir * 1.5f;
-	//glutPostRedisplay();
 }

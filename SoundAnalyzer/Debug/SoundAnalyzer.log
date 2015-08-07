@@ -1,21 +1,19 @@
-﻿La génération a démarré 06/08/2015 18:31:41.
+﻿La génération a démarré 07/08/2015 17:31:06.
      1>Projet "C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\SoundAnalyzer\SoundAnalyzer.vcxproj" sur le nœud 2 (Build cible(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\Libs\glm\glm /I..\Libs\glew\include\GL /I..\Libs\freeglut\include\GL /I..\Libs\FMod /I..\Libs /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt OpenGLRenderer.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\Libs\glfw\include\GLFW /I..\Libs\glm\glm /I..\Libs\glew\include\GL /I..\Libs\FMod /I..\Libs /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt OpenGLRenderer.cpp
          OpenGLRenderer.cpp
-     1>c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\openglrenderer.cpp(123): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-     1>c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\openglrenderer.cpp(124): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-     1>c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\openglrenderer.cpp(159): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
-     1>c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\openglrenderer.cpp(160): warning C4244: '=' : conversion de 'int' en 'float', perte possible de données
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\SoundAnalyzer.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\Libs\glew\lib\Release\Win32 /LIBPATH:..\Libs\freeglut\lib /LIBPATH:..\Libs\FMod kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\SoundAnalyzer.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\SoundAnalyzer.lib" /MACHINE:X86 Debug\EsgiShader.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\SoundAnalyzer.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\Libs\glfw\lib /LIBPATH:..\Libs\glew\lib\Release\Win32 /LIBPATH:..\Libs\FMod opengl32.lib glew32s.lib glu32.lib glfw3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:msvcrt.lib /NODEFAULTLIB:libcmt.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\SoundAnalyzer.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\SoundAnalyzer.lib" /MACHINE:X86 Debug\Camera.obj
+         Debug\EsgiShader.obj
          Debug\Landmark.obj
          Debug\main.obj
          Debug\Map.obj
          Debug\OpenGLRenderer.obj
+         Debug\Time.obj
          SoundAnalyzer.vcxproj -> C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\SoundAnalyzer.exe
      1>Génération du projet "C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\SoundAnalyzer\SoundAnalyzer.vcxproj" terminée (Build cible(s)).
 
 La génération a réussi.
 
-Temps écoulé 00:00:02.78
+Temps écoulé 00:00:01.29

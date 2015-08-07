@@ -8,6 +8,8 @@
 #include "gtc\matrix_transform.hpp"
 
 #include "DrawableItem.h"
+#include "Camera.h"
+#include "Time.h"
 
 class OpenGLRenderer
 {
@@ -15,6 +17,8 @@ public:
 
 	static void			Initialize(int argc, char* argv[]);
 	static void			Start();
+	static void			EnterMainLoop();
+	static void			ExitMainLoop();
 	static void			RegisterElement(const std::shared_ptr<DrawableItem> item);
 	static void			Close();
 	//static void			Restart();
@@ -26,6 +30,11 @@ public:
 	static void			MotionFunc(int x, int y);
 private:
 	static std::vector<const std::shared_ptr<DrawableItem>> DrawableElements;
+	static const GLFWvidmode* mode;
+	static GLFWwindow*	window;
+	static bool			ContinueMainLoop;
+	static Camera		MainCamera;
+	static float		CameraSpeed;
 	static int			argcSave;
 	static char**		argvSave;
 	static float		depth;

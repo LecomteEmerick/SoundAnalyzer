@@ -1,20 +1,13 @@
 #pragma once
 
-//WTF fix that shit ! Goto main.cpp
-#if _WIN32
-#include <Windows.h>
-#define FREEGLUT_LIB_PRAGMAS 0
-#pragma comment(lib, "freeglut.lib")
-#pragma comment(lib, "opengl32.lib")
-#pragma comment(lib, "glew32s.lib")
-#pragma comment(lib, "glu32.lib")
-#endif
-
 #define GLEW_STATIC 1
 #include "glew.h"
-#include "freeglut.h"
 #include "glm.hpp"
 #include "gtc/type_ptr.hpp"
+
+#define GLFW_INCLUDE_NONE
+#define GLFW_INCLUDE_GLU
+#include "glfw3.h"
 
 class DrawableItem
 {
