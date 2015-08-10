@@ -1,15 +1,6 @@
-﻿La génération a démarré 07/08/2015 17:52:23.
+﻿La génération a démarré 10/08/2015 11:37:14.
      1>Projet "C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\SoundAnalyzer\SoundAnalyzer.vcxproj" sur le nœud 2 (Build cible(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I..\Libs\glfw\include\GLFW /I..\Libs\glm\glm /I..\Libs\glew\include\GL /I..\Libs\FMod /I..\Libs /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt OpenGLRenderer.cpp Time.cpp main.cpp
-         Time.cpp
-     1>c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\time.cpp(9): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
-     1>c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\time.cpp(19): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
-         OpenGLRenderer.cpp
-         Génération de code en cours...
-         Ignoré... (aucune modification pertinente détectée)
-         main.cpp
-       Link:
+     1>Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\SoundAnalyzer.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\Libs\glfw\lib /LIBPATH:..\Libs\glew\lib\Release\Win32 /LIBPATH:..\Libs\FMod opengl32.lib glew32s.lib glu32.lib glfw3.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:msvcrt.lib /NODEFAULTLIB:libcmt.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\SoundAnalyzer.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\SoundAnalyzer.lib" /MACHINE:X86 Debug\Camera.obj
          Debug\EsgiShader.obj
          Debug\Landmark.obj
@@ -17,25 +8,26 @@
          Debug\Map.obj
          Debug\OpenGLRenderer.obj
          Debug\Time.obj
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewAttachShader importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewCompileShader importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewCreateProgram importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewCreateShader importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewDeleteProgram importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewDeleteShader importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewDetachShader importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewGetProgramInfoLog importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewGetProgramiv importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewGetShaderInfoLog importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewGetShaderiv importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewLinkProgram importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewShaderSource importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewUseProgram importÚ
-     1>EsgiShader.obj : warning LNK4049: symbole dÚfini localement ___glewValidateProgram importÚ
-     1>glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' n'a pu Ûtre trouvÚ avec 'glew32s.lib(glew.obj)' ou sur 'C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\vc120.pdb'á; l'objet sera liÚ sans informations de dÚbogage
+         LINK : C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\SoundAnalyzer.exe introuvable ou non généré par la dernière édition de liens incrémentielle ; édition de liens complète en cours
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewAttachShader importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewCompileShader importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewCreateProgram importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewCreateShader importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewDeleteProgram importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewDeleteShader importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewDetachShader importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewGetProgramInfoLog importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewGetProgramiv importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewGetShaderInfoLog importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewGetShaderiv importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewLinkProgram importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewShaderSource importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewUseProgram importé
+     1>EsgiShader.obj : warning LNK4049: symbole défini localement ___glewValidateProgram importé
+     1>glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' n'a pu être trouvé avec 'glew32s.lib(glew.obj)' ou sur 'C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\vc120.pdb' ; l'objet sera lié sans informations de débogage
          SoundAnalyzer.vcxproj -> C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\Debug\SoundAnalyzer.exe
      1>Génération du projet "C:\Users\elecomte\Documents\Visual Studio 2013\Projects\SoundAnalyzer\SoundAnalyzer\SoundAnalyzer.vcxproj" terminée (Build cible(s)).
 
 La génération a réussi.
 
-Temps écoulé 00:00:01.59
+Temps écoulé 00:00:00.47

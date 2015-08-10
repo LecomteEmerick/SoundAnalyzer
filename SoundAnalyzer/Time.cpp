@@ -1,7 +1,7 @@
 #include "Time.h"
 
-float	Time::time_;
-float	Time::previousTime_;
+double	Time::time_;
+double	Time::previousTime_;
 bool	Time::isStarted_;
 
 void Time::Start()
@@ -13,21 +13,21 @@ void Time::Start()
 
 void Time::Update()
 {
-	float currentTime;
-	float delta;
+	double currentTime;
+	double delta;
 
 	currentTime = glfwGetTime();
 	delta = currentTime - Time::previousTime_;
 	Time::previousTime_ = currentTime;
 
 	Time::time_ = 1.0f;
-	if (!isStarted_)
+	if (isStarted_)
 		Time::time_ += delta;
 }
 
-float Time::GetSecondElapsed()
+double Time::GetSecondElapsed()
 {
-	return Time::time_;
+	return Time::time_ - 1.0f;
 }
 
 void Time::Play()

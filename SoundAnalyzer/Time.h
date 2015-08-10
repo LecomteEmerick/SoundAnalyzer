@@ -9,12 +9,12 @@ class Time
 public:
 	static void		Start();
 	static void		Update();
-	static float	GetSecondElapsed();
+	static double	GetSecondElapsed();
 	static void		Play();
 	static void		Pause();
 private:
-	static float	time_;
+	static double	time_;
 	static bool		isStarted_;
-	static float	previousTime_;
+	static double	previousTime_;
 };
 
