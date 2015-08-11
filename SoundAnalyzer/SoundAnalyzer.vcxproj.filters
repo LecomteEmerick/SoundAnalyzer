@@ -34,6 +34,9 @@
     <Filter Include="Fichiers sources\Utils">
       <UniqueIdentifier>{74dab6a6-5ef7-4e5c-ab8a-41063090ab18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\SoundAnalysis">
+      <UniqueIdentifier>{8f935d0e-d041-4a8e-bc04-a9b0260336cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -55,7 +58,13 @@
       <Filter>Fichiers sources\Utils</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="AnalyzerTool.cpp">
+      <Filter>Fichiers sources\SoundAnalysis</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundAnalyzer.cpp">
+      <Filter>Fichiers sources\SoundAnalysis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -81,7 +90,13 @@
       <Filter>Fichiers d%27en-tête\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundAnalyzer.h">
+      <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="AnalyzerTool.h">
+      <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

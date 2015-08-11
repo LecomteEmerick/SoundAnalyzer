@@ -70,21 +70,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnalyzerTool.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="common\EsgiShader.cpp" />
     <ClCompile Include="Landmark.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="OpenGLRenderer.cpp" />
+    <ClCompile Include="SoundAnalyzer.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnalyzerTool.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="common\EsgiShader.h" />
     <ClInclude Include="DrawableItem.h" />
     <ClInclude Include="Landmark.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="OpenGLRenderer.h" />
+    <ClInclude Include="SoundAnalyzer.h" />
     <ClInclude Include="SpectrumData.h" />
     <ClInclude Include="Time.h" />
   </ItemGroup>

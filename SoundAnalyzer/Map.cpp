@@ -28,10 +28,10 @@ void Map::ConstructEBO()
 void Map::ConstructVBO()
 {
 	float vertex[] = {
-		0, 0, 0, 1.0f, 0.0f, 0.0f,
-		0, 0, 10, 0.0f, 1.0f, 0.0f,
-		0, 10, 10, 0.0f, 1.0f, 0.0f,
-		0, 10, 0, 1.0f, 0.0f, 0.0f
+		 0.0f,  0.0f,  0.0f, 1.0f, 0.0f, 0.0f,
+		 0.0f,  0.0f, 10.0f, 0.0f, 1.0f, 0.0f,
+		10.0f,  0.0f, 10.0f, 0.0f, 1.0f, 0.0f,
+		10.0f,  0.0f,  0.0f, 1.0f, 0.0f, 0.0f
 	};
 
 	glGenBuffers(1, &VBO);
@@ -57,11 +57,11 @@ void Map::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, c
 
 	GLint positionLocation = glGetAttribLocation(this->ShaderProgram, "a_position");
 	glEnableVertexAttribArray(positionLocation);
-	glVertexAttribPointer(positionLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float)* 3, 0);
+	glVertexAttribPointer(positionLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float)* 6, 0);
 
 	GLint colorLocation = glGetAttribLocation(this->ShaderProgram, "a_color");
 	glEnableVertexAttribArray(colorLocation);
-	glVertexAttribPointer(colorLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float)* 3, (void*)(3 * sizeof(float)));
+	glVertexAttribPointer(colorLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float)* 6, (void*)(3 * sizeof(float)));
 
 	glDrawArrays(GL_TRIANGLES, 0, 6);
 

@@ -24,6 +24,7 @@ public:
 	void	AddSegment(const float frequency, const double intensity)													{ this->SegmentData.push_back(SpectrumData(frequency, intensity)); }
 	void	AddSegment(const double intensity)																			{ this->SegmentData.push_back(SpectrumData(this->SegmentData.size() * this->frequencyStep_, intensity)); }
 	void	AddSegment(SpectrumData Segment)																			{ this->SegmentData.push_back(Segment); }
+	float	GetFrequencyStep()																							{ return this->frequencyStep_; }
 	void	SetFrequencyStep(const double frequencyStep)																{ this->frequencyStep_ = frequencyStep_; }
 			~SpectrumSegment() {}
 

@@ -58,7 +58,7 @@ void OpenGLRenderer::Start()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 
-	//OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Map()));
+	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Map()));
 	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Landmark()));
 
 	Time::Start();
@@ -132,8 +132,8 @@ void OpenGLRenderer::MotionFunc(GLFWwindow* window, double x, double y)
 {
 	if (OpenGLRenderer::mouseDown)
 	{
-		float xAngleUnit = (x - OpenGLRenderer::previousMousePosX) * Time::GetSecondElapsed() * CameraSensitivity;
-		float yAngleUnit = (y - OpenGLRenderer::previousMousePosY) * Time::GetSecondElapsed() * CameraSensitivity;
+		float xAngleUnit = (float)((x - OpenGLRenderer::previousMousePosX) * Time::GetSecondElapsed() * CameraSensitivity);
+		float yAngleUnit = (float)((y - OpenGLRenderer::previousMousePosY) * Time::GetSecondElapsed() * CameraSensitivity);
 		OpenGLRenderer::MainCamera.offsetOrientation(yAngleUnit, xAngleUnit);
 		OpenGLRenderer::previousMousePosX = x;
 		OpenGLRenderer::previousMousePosY = y;

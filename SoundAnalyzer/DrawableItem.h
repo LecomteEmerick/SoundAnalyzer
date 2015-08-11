@@ -5,7 +5,6 @@
 #include "glm.hpp"
 #include "gtc/type_ptr.hpp"
 
-#define GLFW_INCLUDE_NONE
 #define GLFW_INCLUDE_GLU
 #include "glfw3.h"
 

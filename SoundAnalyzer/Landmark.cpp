@@ -17,14 +17,14 @@ void Landmark::ConstructEBO()
 {
 	glGenBuffers(1, &this->EBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned short) * sizeof(indices), indices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 }
 
 void Landmark::ConstructVBO()
 {
 	glGenBuffers(1, &this->VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * sizeof(vertex), vertex, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertex), vertex, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
@@ -53,10 +53,10 @@ void Landmark::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatr
 	glEnableVertexAttribArray(colorLocation);
 	glVertexAttribPointer(colorLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, (void*)(3 * sizeof(float)));
 
-	glDrawArrays(GL_POINTS, 0, 24);
+	glDrawArrays(GL_POINTS, 0, 6);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
-	glDrawElements(GL_LINES, sizeof(indices), GL_UNSIGNED_SHORT, nullptr);
+	glDrawElements(GL_LINES, 6, GL_UNSIGNED_SHORT, nullptr);
 
 	glUseProgram(0);
 }
