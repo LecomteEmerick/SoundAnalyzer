@@ -60,10 +60,10 @@
     <ClCompile Include="Camera.cpp">
       <Filter>Fichiers sources\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="AnalyzerTool.cpp">
+    <ClCompile Include="SoundAnalyzer.cpp">
       <Filter>Fichiers sources\SoundAnalysis</Filter>
     </ClCompile>
-    <ClCompile Include="SoundAnalyzer.cpp">
+    <ClCompile Include="AnalyzerToolUtils.cpp">
       <Filter>Fichiers sources\SoundAnalysis</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,7 +95,10 @@
     <ClInclude Include="SoundAnalyzer.h">
       <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
     </ClInclude>
-    <ClInclude Include="AnalyzerTool.h">
+    <ClInclude Include="virtualAnalyzerTool.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="AnalyzerToolUtils.h">
       <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
     </ClInclude>
   </ItemGroup>

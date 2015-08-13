@@ -70,7 +70,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnalyzerTool.cpp" />
+    <ClCompile Include="AnalyzerToolUtils.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="common\EsgiShader.cpp" />
     <ClCompile Include="Landmark.cpp" />
@@ -81,7 +81,7 @@
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnalyzerTool.h" />
+    <ClInclude Include="AnalyzerToolUtils.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="common\EsgiShader.h" />
     <ClInclude Include="DrawableItem.h" />
@@ -91,6 +91,7 @@
     <ClInclude Include="SoundAnalyzer.h" />
     <ClInclude Include="SpectrumData.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="virtualAnalyzerTool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

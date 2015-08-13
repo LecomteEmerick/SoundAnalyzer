@@ -3,6 +3,7 @@
 #pragma comment (lib, "fmod_vc.lib")
 
 #include "OpenGLRenderer.h"
+#include "SoundAnalyzer.h"
 
 int main(int argc, char **argv)
 {

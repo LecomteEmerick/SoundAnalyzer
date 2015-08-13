@@ -1,7 +1,8 @@
 #include "SoundAnalyzer.h"
-#include "AnalyzerTool.h"
+#include "AnalyzerToolUtils.h"
 
-SoundAnalyzer::SoundAnalyzer(char* soundPath, int windowSize)
+template<typename T>
+SoundAnalyzer<T>::SoundAnalyzer(char* soundPath, int windowSize)
 {
 	//Init and CreateSound
 	FMOD::System_Create(&sys);
@@ -12,25 +13,14 @@ SoundAnalyzer::SoundAnalyzer(char* soundPath, int windowSize)
 
 	if (res == FMOD_OK)
 	{
-		AnalyzerTool::getSpectrum(this);
+		AnalyzerToolUtils::getSpectrum(this);
 	}
 	else{
-		std::exception( (std::string("Can't open sound : ") + std::string(soundPath)).c_str());
+		std::exception( (std::string("Can't open sound : ") + std::string(soundPath)).c_str() );
 	}
 }
 
-void SoundAnalyzer::SetAnalyzeTypeAverageAmplitude(int frequencyStart, int frequencyEnd)
-{
-	this->frequencyRangeStart_ = ((int)(frequencyStart / this->frequencyStep_)) * frequencyStep_;
-	this->frequencyRangeEnd_ = ((int)(frequencyEnd / this->frequencyStep_)) * frequencyStep_;
-	this->AnalyzeFunction = AnalyzerTool::GetAverageAmplitudeOnRange;
-}
-
-void SoundAnalyzer::ExecuteAnalyze()
-{
-	this->AnalyzeFunction(this);
-}
-
-SoundAnalyzer::~SoundAnalyzer()
+template<typename T>
+SoundAnalyzer<T>::~SoundAnalyzer()
 {
 }

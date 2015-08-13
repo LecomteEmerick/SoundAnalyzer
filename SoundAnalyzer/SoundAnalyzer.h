@@ -1,23 +1,24 @@
 #pragma once
 
+#include "virtualAnalyzerTool.h"
 #include "SpectrumData.h"
 #include "fmod.hpp"
 
+template<typename T>
 class SoundAnalyzer
 {
 public:
 	FMOD::Sound*		Sound;
 	FMOD::System*		sys;
 	SoundSpectrum		data;
+	T					Analyzer;
 
 						SoundAnalyzer(char* soundPath, int windowSize );
 	int					GetWindowSize()																{ return this->windowSize; }
 	float				GetFrequencyRangeStart()													{ return this->frequencyRangeStart_; }
 	float				GetFrequencyRangeEnd()														{ return this->frequencyRangeEnd_; }
-	void				SetAnalyzeFunction(std::function<void(SoundAnalyzer*)> func)				{ this->AnalyzeFunction = func; }
 	void				SetFrequencyStep(float frequencyStep)										{ this->frequencyStep_ = frequencyStep; }
-	void				SetAnalyzeTypeAverageAmplitude(int frequencyStart, int frequencyEnd);
-	void				ExecuteAnalyze();
+	T					ExecuteAnalyze()															{ this->Analyzer.execute(); return this->Analyzer.GetResult(); }
 						~SoundAnalyzer();
 private:
 	char*				SoundPath;
@@ -25,7 +26,5 @@ private:
 	float				frequencyRangeStart_;
 	float				frequencyRangeEnd_;
 	float				frequencyStep_;
-
-	std::function<void(SoundAnalyzer*)> AnalyzeFunction;
 };
 
