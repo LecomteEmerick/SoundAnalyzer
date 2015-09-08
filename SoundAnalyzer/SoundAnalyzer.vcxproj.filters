@@ -37,6 +37,12 @@
     <Filter Include="Fichiers sources\SoundAnalysis">
       <UniqueIdentifier>{8f935d0e-d041-4a8e-bc04-a9b0260336cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\SoundAnalysis\Analyzer">
+      <UniqueIdentifier>{a23d6d5d-de94-4496-bf31-58abc98bfe1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\SoundAnalysis\Analyzer">
+      <UniqueIdentifier>{3987626d-e578-4cb7-8c3b-ce419e614437}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -65,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="AnalyzerToolUtils.cpp">
       <Filter>Fichiers sources\SoundAnalysis</Filter>
+    </ClCompile>
+    <ClCompile Include="GetAverageAmplitudeAnalyzer.cpp">
+      <Filter>Fichiers sources\SoundAnalysis\Analyzer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,10 +104,13 @@
     <ClInclude Include="SoundAnalyzer.h">
       <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
     </ClInclude>
-    <ClInclude Include="virtualAnalyzerTool.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="AnalyzerToolUtils.h">
+      <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="GetAverageAmplitudeAnalyzer.h">
+      <Filter>Fichiers d%27en-tête\SoundAnalysis\Analyzer</Filter>
+    </ClInclude>
+    <ClInclude Include="virtualAnalyzerTool.h">
       <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
     </ClInclude>
   </ItemGroup>

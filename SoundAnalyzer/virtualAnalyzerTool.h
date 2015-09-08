@@ -2,6 +2,7 @@
 class virtualAnalyzerTool
 {
 public:
-	virtual void Execute() = 0;
+	template<typename T>
+	virtual void Execute(SoundAnalyzer<T>& SoundInfos) = 0;
 };
 

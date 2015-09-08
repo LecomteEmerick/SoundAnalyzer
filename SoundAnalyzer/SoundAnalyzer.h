@@ -15,16 +15,12 @@ public:
 
 						SoundAnalyzer(char* soundPath, int windowSize );
 	int					GetWindowSize()																{ return this->windowSize; }
-	float				GetFrequencyRangeStart()													{ return this->frequencyRangeStart_; }
-	float				GetFrequencyRangeEnd()														{ return this->frequencyRangeEnd_; }
 	void				SetFrequencyStep(float frequencyStep)										{ this->frequencyStep_ = frequencyStep; }
-	T					ExecuteAnalyze()															{ this->Analyzer.execute(); return this->Analyzer.GetResult(); }
+	void				ExecuteAnalyze()															{ this->Analyzer.Execute(this); }
 						~SoundAnalyzer();
 private:
 	char*				SoundPath;
 	int					windowSize;
-	float				frequencyRangeStart_;
-	float				frequencyRangeEnd_;
 	float				frequencyStep_;
 };
 

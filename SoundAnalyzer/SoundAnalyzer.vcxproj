@@ -73,6 +73,7 @@
     <ClCompile Include="AnalyzerToolUtils.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="common\EsgiShader.cpp" />
+    <ClCompile Include="GetAverageAmplitudeAnalyzer.cpp" />
     <ClCompile Include="Landmark.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -85,6 +86,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="common\EsgiShader.h" />
     <ClInclude Include="DrawableItem.h" />
+    <ClInclude Include="GetAverageAmplitudeAnalyzer.h" />
     <ClInclude Include="Landmark.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="OpenGLRenderer.h" />
