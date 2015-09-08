@@ -19,7 +19,7 @@ public:
 	static void			Start();
 	static void			EnterMainLoop();
 	static void			ExitMainLoop();
-	static void			RegisterElement(const std::shared_ptr<DrawableItem> item);
+	static void			RegisterElement(std::shared_ptr<DrawableItem> item);
 	static void			Close();
 private:
 	static void			DisplayFunc();
@@ -28,7 +28,7 @@ private:
 	static void			KeyboardFunc(GLFWwindow* window, int key, int scancode, int action, int mods);
 	static void			UpdateKeyboard();
 
-	static std::vector<const std::shared_ptr<DrawableItem>> DrawableElements;
+	static std::vector<std::shared_ptr<DrawableItem>> DrawableElements;
 	static bool			ContinueMainLoop;
 
 	static GLFWwindow*	window;

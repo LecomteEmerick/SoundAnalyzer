@@ -7,12 +7,34 @@ c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanaly
 c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\debug\map.obj
 c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\debug\openglrenderer.obj
 c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\debug\time.obj
+c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\debug\analyzertool.obj
+c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\debug\soundanalyzer.obj
+c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\debug\analyzertoolutils.obj
+d:\github\soundanalyzer\soundanalyzer\debug\vc140.pdb
+d:\github\soundanalyzer\soundanalyzer\debug\vc140.idb
+d:\github\soundanalyzer\soundanalyzer\debug\camera.obj
+d:\github\soundanalyzer\soundanalyzer\debug\esgishader.obj
+d:\github\soundanalyzer\soundanalyzer\debug\landmark.obj
+d:\github\soundanalyzer\soundanalyzer\debug\map.obj
+d:\github\soundanalyzer\soundanalyzer\debug\time.obj
+d:\github\soundanalyzer\soundanalyzer\debug\getaverageamplitudeanalyzer.obj
+d:\github\soundanalyzer\soundanalyzer\debug\analyzertoolutils.obj
+d:\github\soundanalyzer\soundanalyzer\debug\openglrenderer.obj
+d:\github\soundanalyzer\soundanalyzer\debug\soundanalyzer.obj
+d:\github\soundanalyzer\soundanalyzer\debug\main.obj
 c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\debug\soundanalyzer.ilk
 c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\debug\soundanalyzer.exe
 c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\debug\soundanalyzer.pdb
-c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\cl.command.1.tlog
-c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\cl.read.1.tlog
-c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\cl.write.1.tlog
-c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\link.command.1.tlog
-c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\link.read.1.tlog
-c:\users\elecomte\documents\visual studio 2013\projects\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\link.write.1.tlog
+d:\github\soundanalyzer\soundanalyzer\debug\vc120.idb
+d:\github\soundanalyzer\soundanalyzer\debug\vc120.pdb
+d:\github\soundanalyzer\debug\soundanalyzer.pdb
+d:\github\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\cl.command.1.tlog
+d:\github\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\cl.read.1.tlog
+d:\github\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\cl.write.1.tlog
+d:\github\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\link-cvtres.read.1.tlog
+d:\github\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\link-cvtres.write.1.tlog
+d:\github\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\link-rc.read.1.tlog
+d:\github\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\link-rc.write.1.tlog
+d:\github\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\link.command.1.tlog
+d:\github\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\link.read.1.tlog
+d:\github\soundanalyzer\soundanalyzer\debug\soundanalyzer.tlog\link.write.1.tlog

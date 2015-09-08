@@ -2,7 +2,7 @@
 #include "Map.h"
 #include "Landmark.h"
 
-std::vector<const std::shared_ptr<DrawableItem>> OpenGLRenderer::DrawableElements;
+std::vector<std::shared_ptr<DrawableItem>> OpenGLRenderer::DrawableElements;
 
 //MainLoop
 bool OpenGLRenderer::ContinueMainLoop;
@@ -33,7 +33,7 @@ void OpenGLRenderer::Initialize(int argc, char* argv[])
 	OpenGLRenderer::MainCamera.setPosition(glm::vec3(0.0f, 0.0f, OpenGLRenderer::Depth));
 	OpenGLRenderer::MainCamera.lookAt(glm::vec3(0.0f, 0.0f, 0.0f));
 	OpenGLRenderer::CameraSpeed = 1.0f;
-	OpenGLRenderer::CameraSensitivity = 5.0f;
+	OpenGLRenderer::CameraSensitivity = 50.0f;
 
 	glfwInit();
 

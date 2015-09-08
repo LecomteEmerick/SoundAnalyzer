@@ -1,8 +1,7 @@
 #include "SoundAnalyzer.h"
 #include "AnalyzerToolUtils.h"
 
-template<typename T>
-SoundAnalyzer<T>::SoundAnalyzer(char* soundPath, int windowSize)
+SoundAnalyzer::SoundAnalyzer(char* soundPath, int windowSize)
 {
 	//Init and CreateSound
 	FMOD::System_Create(&sys);
@@ -20,7 +19,6 @@ SoundAnalyzer<T>::SoundAnalyzer(char* soundPath, int windowSize)
 	}
 }
 
-template<typename T>
-SoundAnalyzer<T>::~SoundAnalyzer()
+SoundAnalyzer::~SoundAnalyzer()
 {
 }

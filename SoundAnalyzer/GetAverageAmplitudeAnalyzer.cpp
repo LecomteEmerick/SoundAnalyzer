@@ -11,7 +11,7 @@ void GetAverageAmplitudeAnalyzer::Initialize(int StartRangeFrequency, int EndRan
 
 }
 
-void GetAverageAmplitudeAnalyzer::Execute(SoundAnalyzer<GetAverageAmplitudeAnalyzer>& SoundInfos)
+void GetAverageAmplitudeAnalyzer::Execute(SoundAnalyzer& SoundInfos)
 {
 
 }

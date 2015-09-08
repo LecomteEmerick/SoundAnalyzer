@@ -7,9 +7,7 @@
 class AnalyzerToolUtils
 {
 public:
-	template<typename T>
-	static void		getSpectrum(SoundAnalyzer<T>* outSoundAnalyzer);
+	static void		getSpectrum(SoundAnalyzer* outSoundAnalyzer);
 	//
-	template<typename T>
-	static void		ExtractRange(const SoundAnalyzer<T>& analyzer, SoundSpectrum& outRangedSpectrum);
+	static void		ExtractRange(const SoundAnalyzer& analyzer, SoundSpectrum& outRangedSpectrum);
 };

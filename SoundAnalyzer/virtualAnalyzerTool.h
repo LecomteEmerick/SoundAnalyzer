@@ -1,8 +1,9 @@
 #pragma once
+#include "SoundAnalyzer.h"
+
 class virtualAnalyzerTool
 {
 public:
-	template<typename T>
-	virtual void Execute(SoundAnalyzer<T>& SoundInfos) = 0;
+	virtual void Execute(SoundAnalyzer& SoundInfos) = 0;
 };
 

@@ -1,7 +1,6 @@
 #include "AnalyzerToolUtils.h"
 
-template<typename T>
-void AnalyzerToolUtils::getSpectrum(SoundAnalyzer<T>* soundAnalyzer)
+void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 {
 	//FMod variable
 	FMOD::DSP* dspSpectrum;
@@ -63,8 +62,7 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer<T>* soundAnalyzer)
 	soundAnalyzer->Sound->release();
 }
 
-template<typename T>
-void AnalyzerToolUtils::ExtractRange(const SoundAnalyzer<T>& analyzer, SoundSpectrum& outSpectrum)
+void AnalyzerToolUtils::ExtractRange(const SoundAnalyzer& analyzer, SoundSpectrum& outSpectrum)
 {
 
 }

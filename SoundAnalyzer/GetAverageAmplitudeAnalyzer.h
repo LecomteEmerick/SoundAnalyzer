@@ -1,9 +1,10 @@
 #pragma once
 #include "SoundAnalyzer.h"
+#include "virtualAnalyzerTool.h"
 
 struct GetAverageAmplitudeAnalyzerResult_t
 {
-	float Spectrum[];
+	std::vector<float> Spectrum[];
 };
 
 class GetAverageAmplitudeAnalyzer : public virtualAnalyzerTool
@@ -11,7 +12,7 @@ class GetAverageAmplitudeAnalyzer : public virtualAnalyzerTool
 public:
 											GetAverageAmplitudeAnalyzer();
 	void									Initialize(int StartRangeFrequency, int EndRangeFrequency);
-	void									Execute(SoundAnalyzer<GetAverageAmplitudeAnalyzer>& SoundInfos);
+	void									Execute(SoundAnalyzer& SoundInfos);
 	GetAverageAmplitudeAnalyzerResult_t		GetResult() { return Result; }
 											~GetAverageAmplitudeAnalyzer();
 private:
