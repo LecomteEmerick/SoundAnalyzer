@@ -11,6 +11,7 @@ public:
 	SoundSpectrum		data;
 
 						SoundAnalyzer(char* soundPath, int windowSize );
+						SoundAnalyzer::SoundAnalyzer(FMOD::System* sys, FMOD::Sound* sound, int windowSize);
 	int					GetWindowSize()																{ return this->windowSize; }
 	void				SetFrequencyStep(float frequencyStep)										{ this->frequencyStep_ = frequencyStep; }
 						~SoundAnalyzer();

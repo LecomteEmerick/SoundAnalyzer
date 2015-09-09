@@ -75,6 +75,9 @@
     <ClCompile Include="GetAverageAmplitudeAnalyzer.cpp">
       <Filter>Fichiers sources\SoundAnalysis\Analyzer</Filter>
     </ClCompile>
+    <ClCompile Include="MicRecorder.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\EsgiShader.h">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="virtualAnalyzerTool.h">
       <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="MicRecorder.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

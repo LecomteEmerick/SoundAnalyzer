@@ -11,6 +11,7 @@
 #include "DrawableItem.h"
 #include "Camera.h"
 #include "Time.h"
+#include "MicRecorder.h"
 
 class OpenGLRenderer
 {
@@ -39,6 +40,8 @@ private:
 	static float		CameraSpeed;
 	static float		CameraSensitivity;
 	static float		Depth;
+
+	static MicRecorder	micRecorder;
 
 	static bool			mouseDown;
 	static double		previousMousePosX;

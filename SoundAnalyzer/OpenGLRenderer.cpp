@@ -18,6 +18,9 @@ float OpenGLRenderer::CameraSpeed;
 float OpenGLRenderer::CameraSensitivity;
 float OpenGLRenderer::Depth;
 
+//MicRecorder
+MicRecorder OpenGLRenderer::micRecorder;
+
 //Mouse
 bool OpenGLRenderer::mouseDown;
 double OpenGLRenderer::previousMousePosX;
@@ -34,6 +37,8 @@ void OpenGLRenderer::Initialize(int argc, char* argv[])
 	OpenGLRenderer::MainCamera.lookAt(glm::vec3(0.0f, 0.0f, 0.0f));
 	OpenGLRenderer::CameraSpeed = 1.0f;
 	OpenGLRenderer::CameraSensitivity = 50.0f;
+
+	OpenGLRenderer::micRecorder = MicRecorder();
 
 	glfwInit();
 
@@ -142,7 +147,30 @@ void OpenGLRenderer::MotionFunc(GLFWwindow* window, double x, double y)
 
 void OpenGLRenderer::KeyboardFunc(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	OpenGLRenderer::Keys[key] = action != GLFW_RELEASE;
+	bool Instantkey = false;
+	if (action != GLFW_RELEASE)
+	{
+		switch (key) //touche sans prédiction (juste une frame)
+		{
+		case(GLFW_KEY_SEMICOLON) :
+			if (OpenGLRenderer::micRecorder.checkIsRecording())
+			{
+				micRecorder.StopRecording();
+			}
+			else
+			{
+				micRecorder.StartRecording();
+			}
+								 Instantkey = true;
+								 break;
+		case(GLFW_KEY_0) :
+			micRecorder.ChangeRecordedDriver();
+			Instantkey = true;
+			break;
+		}
+	}
+	if(!Instantkey) //Touche avec prédiction
+		OpenGLRenderer::Keys[key] = action != GLFW_RELEASE;
 }
 
 void OpenGLRenderer::UpdateKeyboard()
@@ -151,7 +179,7 @@ void OpenGLRenderer::UpdateKeyboard()
 	{
 		if (keyState.second)
 		{
-			switch (keyState.first)
+			switch (keyState.first) //Attention clavier QWERTY
 			{
 				case(GLFW_KEY_ESCAPE):
 					OpenGLRenderer::Close();

@@ -38,7 +38,7 @@ public:
 			std::vector<SpectrumSegment> SpectrumData;
 
 			SoundSpectrum()																								{}
-			SoundSpectrum(const int size)																				{ this->SpectrumData.reserve( sizeof(SpectrumSegment) * size); }
+			SoundSpectrum(const int sizeData)																			{ this->SpectrumData.reserve(sizeof(SpectrumSegment) * sizeData); }
 	void	AddData(SpectrumSegment data)																				{ this->SpectrumData.push_back(data); }
 			~SoundSpectrum() {}
 };

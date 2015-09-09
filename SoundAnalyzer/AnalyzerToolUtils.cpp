@@ -18,7 +18,7 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 
 	//sound time in MS
 	soundAnalyzer->Sound->getLength(&soundTime, FMOD_TIMEUNIT_MS);
-	soundAnalyzer->data.SpectrumData.reserve(soundTime / 1000);
+	soundAnalyzer->data.SpectrumData.reserve(soundTime/400);
 
 	//DSP / FFT / Window
 	soundAnalyzer->sys->createDSPByType(FMOD_DSP_TYPE_FFT, &dspSpectrum);
@@ -29,7 +29,7 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 	//Master Channel -> Add Dsp
 	soundAnalyzer->sys->getMasterChannelGroup(&masterChannel);
 	masterChannel->addDSP(0, dspSpectrum);
-	soundAnalyzer->sys->setOutput(FMOD_OUTPUTTYPE_NOSOUND_NRT);
+	soundAnalyzer->sys->setOutput(FMOD_OUTPUTTYPE_NOSOUND_NRT); //FMOD_OUTPUTTYPE_NOSOUND_NRT
 	soundAnalyzer->sys->playSound(soundAnalyzer->Sound, masterChannel, false, &chan);
 
 	soundAnalyzer->sys->update();
@@ -42,7 +42,7 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 
 	do{
 		res = dspSpectrum->getParameterData(FMOD_DSP_FFT_SPECTRUMDATA, (void **)&dataSpectrum, 0, 0, 0);
-		SpectrumSegment segment(musicSpectrumSize, musicSpectrumSize / niquistRate);
+		SpectrumSegment segment(musicSpectrumSize, dataSpectrum->length);//musicSpectrumSize / niquistRate);
 		for (int bin = 0; bin < dataSpectrum->length; bin++)
 		{
 			val = 0;
@@ -56,7 +56,7 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 		soundAnalyzer->data.AddData(segment);
 		soundAnalyzer->sys->update();
 		i++;
-	} while (i < (soundTime / 1000));
+	} while (i < (soundTime/400)); /// 1000));
 
 	//free sound
 	soundAnalyzer->Sound->release();
