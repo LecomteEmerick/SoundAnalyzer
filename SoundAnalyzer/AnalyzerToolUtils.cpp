@@ -59,7 +59,7 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 	} while (i < (soundTime/400)); /// 1000));
 
 	//free sound
-	soundAnalyzer->Sound->release();
+	//soundAnalyzer->Sound->release();
 }
 
 void AnalyzerToolUtils::ExtractRange(const SoundAnalyzer& analyzer, SoundSpectrum& outSpectrum)

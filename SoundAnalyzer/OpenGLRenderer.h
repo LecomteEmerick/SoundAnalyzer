@@ -12,6 +12,7 @@
 #include "Camera.h"
 #include "Time.h"
 #include "MicRecorder.h"
+#include "RefSoundLib.h"
 
 class OpenGLRenderer
 {
@@ -42,6 +43,8 @@ private:
 	static float		Depth;
 
 	static MicRecorder	micRecorder;
+
+	static RefSoundLib	SoundLib;
 
 	static bool			mouseDown;
 	static double		previousMousePosX;

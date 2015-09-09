@@ -10,13 +10,13 @@ public:
 					MicRecorder();
 	void			ChangeRecordedDriver();
 	void			StartRecording();
-	void			StopRecording(); // return type : SoundAnalyzer&
+	void			StopRecording(SoundAnalyzer& analyzer);
 					~MicRecorder();
 private:
 	FMOD::System* sys;
 	FMOD::Sound* Sound=0;
 
 	bool isRecording=false;
-	int recordedDriver = 0;
+	int recordedDriver = 1; //micro externe sur mon pc
 };
 

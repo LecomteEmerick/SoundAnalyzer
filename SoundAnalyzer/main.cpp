@@ -1,9 +1,10 @@
 #include <stdio.h>
 
 #pragma comment (lib, "fmod_vc.lib")
+//#pragma comment(lib, "libboost_filesystem-vc140-mt-gd-1_59.lib")
 
 #include "OpenGLRenderer.h"
-#include "SoundAnalyzer.h"
+//#include "SoundAnalyzer.h"
 
 int main(int argc, char **argv)
 {

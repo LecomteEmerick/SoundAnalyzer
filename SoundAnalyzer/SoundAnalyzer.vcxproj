@@ -47,10 +47,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\Libs\glfw\include\GLFW;..\Libs\glm\glm;..\Libs\glew\include\GL;..\Libs\FMod;..\Libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\Libs\glfw\lib;..\Libs\glew\lib\Release\Win32;..\Libs\FMod;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\Libs\boost_1_59_0\libs;..\Libs\glfw\lib;..\Libs\glew\lib\Release\Win32;..\Libs\FMod;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glew32s.lib;glu32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -79,7 +80,10 @@
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MicRecorder.cpp" />
     <ClCompile Include="OpenGLRenderer.cpp" />
+    <ClCompile Include="RefSoundLib.cpp" />
     <ClCompile Include="SoundAnalyzer.cpp" />
+    <ClCompile Include="SoundComparer.cpp" />
+    <ClCompile Include="SoundSaver.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -92,7 +96,10 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="MicRecorder.h" />
     <ClInclude Include="OpenGLRenderer.h" />
+    <ClInclude Include="RefSoundLib.h" />
     <ClInclude Include="SoundAnalyzer.h" />
+    <ClInclude Include="SoundComparer.h" />
+    <ClInclude Include="SoundSaver.h" />
     <ClInclude Include="SpectrumData.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="virtualAnalyzerTool.h" />

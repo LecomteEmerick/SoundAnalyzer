@@ -18,7 +18,10 @@ void MicRecorder::ChangeRecordedDriver()
 	this->sys->getRecordNumDrivers(&numDrivers, &numConnected);
 
 	if (numDrivers == 0)
+	{
 		std::cout << "No driver found" << std::endl;
+		return;
+	}
 
 	FMOD_RESULT res;
 	for (int i = 0; i < numDrivers; i++)
@@ -61,7 +64,7 @@ void MicRecorder::StartRecording()
 	this->isRecording = true;
 }
 
-void MicRecorder::StopRecording()
+void MicRecorder::StopRecording(SoundAnalyzer& analyzer)
 {
 	FMOD::Channel* channel;
 
@@ -69,10 +72,9 @@ void MicRecorder::StopRecording()
 
 	this->isRecording = false;
 
-	//this->sys->playSound(this->Sound, 0, false, &channel); //debug
+	analyzer = SoundAnalyzer(this->sys, this->Sound, 8192);
+	//this->sys->playSound(analyzer.Sound, 0, false, &channel); //debug
 
-	SoundAnalyzer tmp(this->sys, this->Sound, 8192);
-	return;
 }
 
 MicRecorder::~MicRecorder()

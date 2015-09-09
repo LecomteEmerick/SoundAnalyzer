@@ -1,6 +1,8 @@
 #include "OpenGLRenderer.h"
 #include "Map.h"
 #include "Landmark.h"
+#include "SoundSaver.h"
+#include "SoundComparer.h"
 
 std::vector<std::shared_ptr<DrawableItem>> OpenGLRenderer::DrawableElements;
 
@@ -21,6 +23,9 @@ float OpenGLRenderer::Depth;
 //MicRecorder
 MicRecorder OpenGLRenderer::micRecorder;
 
+//Sound Lib
+RefSoundLib	OpenGLRenderer::SoundLib;
+
 //Mouse
 bool OpenGLRenderer::mouseDown;
 double OpenGLRenderer::previousMousePosX;
@@ -39,6 +44,8 @@ void OpenGLRenderer::Initialize(int argc, char* argv[])
 	OpenGLRenderer::CameraSensitivity = 50.0f;
 
 	OpenGLRenderer::micRecorder = MicRecorder();
+
+	OpenGLRenderer::SoundLib.Initialize(argv[0]);
 
 	glfwInit();
 
@@ -65,6 +72,11 @@ void OpenGLRenderer::Start()
 
 	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Map()));
 	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Landmark()));
+
+	//debug
+	SoundAnalyzer hello("D:/GitHub/SoundAnalyzer/SoundLib/hello.wav", 8192);
+	SoundAnalyzer refSound;
+	bool find = SoundComparer::Compare(hello, refSound);
 
 	Time::Start();
 
@@ -155,14 +167,16 @@ void OpenGLRenderer::KeyboardFunc(GLFWwindow* window, int key, int scancode, int
 		case(GLFW_KEY_SEMICOLON) :
 			if (OpenGLRenderer::micRecorder.checkIsRecording())
 			{
-				micRecorder.StopRecording();
+				SoundAnalyzer analyzer;
+				micRecorder.StopRecording(analyzer);
+				SoundSaver::SaveSound(analyzer.Sound,"../SoundLib/toto.wav"); //extension obligatoire
 			}
 			else
 			{
 				micRecorder.StartRecording();
 			}
-								 Instantkey = true;
-								 break;
+			Instantkey = true;
+			break;
 		case(GLFW_KEY_0) :
 			micRecorder.ChangeRecordedDriver();
 			Instantkey = true;

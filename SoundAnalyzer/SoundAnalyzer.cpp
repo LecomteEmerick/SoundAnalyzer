@@ -22,15 +22,6 @@ SoundAnalyzer::SoundAnalyzer(char* soundPath, int windowSize) //WindowSize corre
 SoundAnalyzer::SoundAnalyzer(FMOD::System* system, FMOD::Sound* sound, int windowSize)
 {
 	this->sys = system;
-
-	/*unsigned int soundLength;
-	char* buffer;
-	sound->getLength(&soundLength, FMOD_TIMEUNIT_PCMBYTES);
-	memset(&buffer, 0, sizeof(char) * soundLength);
-
-	sound->readData(buffer, soundLength, 0);
-
-	this->sys->createSound(buffer, FMOD_CREATESTREAM, NULL, &this->Sound);*/
 	this->Sound = sound;
 	this->windowSize = windowSize;
 	AnalyzerToolUtils::getSpectrum(this);
