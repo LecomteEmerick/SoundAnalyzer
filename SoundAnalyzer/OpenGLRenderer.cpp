@@ -169,7 +169,7 @@ void OpenGLRenderer::KeyboardFunc(GLFWwindow* window, int key, int scancode, int
 			{
 				SoundAnalyzer analyzer;
 				micRecorder.StopRecording(analyzer);
-				SoundSaver::SaveSound(analyzer.Sound,"../SoundLib/toto.wav"); //extension obligatoire
+				//SoundSaver::SaveSound(analyzer.Sound,"../SoundLib/toto.wav"); //extension obligatoire
 			}
 			else
 			{

@@ -37,11 +37,8 @@
     <Filter Include="Fichiers sources\SoundAnalysis">
       <UniqueIdentifier>{8f935d0e-d041-4a8e-bc04-a9b0260336cb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\SoundAnalysis\Analyzer">
-      <UniqueIdentifier>{a23d6d5d-de94-4496-bf31-58abc98bfe1e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\SoundAnalysis\Analyzer">
-      <UniqueIdentifier>{3987626d-e578-4cb7-8c3b-ce419e614437}</UniqueIdentifier>
+    <Filter Include="Fichiers d%27en-tête\SoundAnalysis\AnalysisResult">
+      <UniqueIdentifier>{d55b8e0d-71d8-499b-a6e8-0efb625f6b9a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,20 +69,20 @@
     <ClCompile Include="AnalyzerToolUtils.cpp">
       <Filter>Fichiers sources\SoundAnalysis</Filter>
     </ClCompile>
-    <ClCompile Include="GetAverageAmplitudeAnalyzer.cpp">
-      <Filter>Fichiers sources\SoundAnalysis\Analyzer</Filter>
-    </ClCompile>
     <ClCompile Include="MicRecorder.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundSaver.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="SoundComparer.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Utils</Filter>
     </ClCompile>
     <ClCompile Include="RefSoundLib.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundComparer.cpp">
+      <Filter>Fichiers sources\SoundAnalysis</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundSaver.cpp">
+      <Filter>Fichiers sources\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Analyzers.cpp">
+      <Filter>Fichiers sources\SoundAnalysis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,23 +116,26 @@
     <ClInclude Include="AnalyzerToolUtils.h">
       <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
     </ClInclude>
-    <ClInclude Include="GetAverageAmplitudeAnalyzer.h">
-      <Filter>Fichiers d%27en-tête\SoundAnalysis\Analyzer</Filter>
-    </ClInclude>
-    <ClInclude Include="virtualAnalyzerTool.h">
-      <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
-    </ClInclude>
     <ClInclude Include="MicRecorder.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundSaver.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="SoundComparer.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Utils</Filter>
     </ClInclude>
     <ClInclude Include="RefSoundLib.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundComparer.h">
+      <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundSaver.h">
+      <Filter>Fichiers d%27en-tête\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="AnalysisResultInclude.h">
+      <Filter>Fichiers d%27en-tête\SoundAnalysis\AnalysisResult</Filter>
+    </ClInclude>
+    <ClInclude Include="GetCumuledAmplitudePerTickResult.h">
+      <Filter>Fichiers d%27en-tête\SoundAnalysis\AnalysisResult</Filter>
+    </ClInclude>
+    <ClInclude Include="Analyzers.h">
+      <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

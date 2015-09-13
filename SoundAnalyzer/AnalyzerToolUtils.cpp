@@ -11,14 +11,14 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 
 	//Variable
 	int sampleRate, musicSpectrumSize;
-	unsigned int soundTime, i = 0;
+	unsigned int soundTime;
 	double val;
-	float niquistRate;
+	float niquistRate, i = 0;
 
 
 	//sound time in MS
 	soundAnalyzer->Sound->getLength(&soundTime, FMOD_TIMEUNIT_MS);
-	soundAnalyzer->data.SpectrumData.reserve(soundTime/400);
+	soundAnalyzer->data.SpectrumData.reserve(soundTime);
 
 	//DSP / FFT / Window
 	soundAnalyzer->sys->createDSPByType(FMOD_DSP_TYPE_FFT, &dspSpectrum);
@@ -32,6 +32,8 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 	soundAnalyzer->sys->setOutput(FMOD_OUTPUTTYPE_NOSOUND_NRT); //FMOD_OUTPUTTYPE_NOSOUND_NRT
 	soundAnalyzer->sys->playSound(soundAnalyzer->Sound, masterChannel, false, &chan);
 
+	soundAnalyzer->sys->setDSPBufferSize(SPECTRUM_BUFFER_SIZE, 0);
+
 	soundAnalyzer->sys->update();
 
 	//Get Samplerate
@@ -42,7 +44,7 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 
 	do{
 		res = dspSpectrum->getParameterData(FMOD_DSP_FFT_SPECTRUMDATA, (void **)&dataSpectrum, 0, 0, 0);
-		SpectrumSegment segment(musicSpectrumSize, dataSpectrum->length);//musicSpectrumSize / niquistRate);
+		SpectrumSegment segment(musicSpectrumSize, musicSpectrumSize / niquistRate);
 		for (int bin = 0; bin < dataSpectrum->length; bin++)
 		{
 			val = 0;
@@ -55,11 +57,8 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 
 		soundAnalyzer->data.AddData(segment);
 		soundAnalyzer->sys->update();
-		i++;
-	} while (i < (soundTime/400)); /// 1000));
-
-	//free sound
-	//soundAnalyzer->Sound->release();
+		i += ((double)SPECTRUM_BUFFER_SIZE / (double)sampleRate) * 1000;
+	} while (i < (soundTime));
 }
 
 void AnalyzerToolUtils::ExtractRange(const SoundAnalyzer& analyzer, SoundSpectrum& outSpectrum)

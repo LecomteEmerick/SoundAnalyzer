@@ -46,13 +46,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\Libs\glfw\include\GLFW;..\Libs\glm\glm;..\Libs\glew\include\GL;..\Libs\FMod;..\Libs;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Libs\glfw\include\GLFW;..\Libs\glm\glm;..\Libs\glew\include\GL;..\Libs\FMod;..\Libs;..\Libs\boost\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\Libs\boost_1_59_0\libs;..\Libs\glfw\lib;..\Libs\glew\lib\Release\Win32;..\Libs\FMod;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glu32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Libs\boost_1_59_0\libs;..\Libs\glfw\lib;..\Libs\glew\lib\Release\Win32;..\Libs\FMod;..\Libs\boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glu32.lib;glfw3.lib;libboost_system-vc140-mt-gd-1_59.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
@@ -71,10 +71,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Analyzers.cpp" />
     <ClCompile Include="AnalyzerToolUtils.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="common\EsgiShader.cpp" />
-    <ClCompile Include="GetAverageAmplitudeAnalyzer.cpp" />
     <ClCompile Include="Landmark.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
@@ -87,11 +87,13 @@
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnalysisResultInclude.h" />
+    <ClInclude Include="Analyzers.h" />
     <ClInclude Include="AnalyzerToolUtils.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="common\EsgiShader.h" />
     <ClInclude Include="DrawableItem.h" />
-    <ClInclude Include="GetAverageAmplitudeAnalyzer.h" />
+    <ClInclude Include="GetCumuledAmplitudePerTickResult.h" />
     <ClInclude Include="Landmark.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MicRecorder.h" />
@@ -102,7 +104,6 @@
     <ClInclude Include="SoundSaver.h" />
     <ClInclude Include="SpectrumData.h" />
     <ClInclude Include="Time.h" />
-    <ClInclude Include="virtualAnalyzerTool.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

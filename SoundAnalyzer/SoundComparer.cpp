@@ -1,5 +1,7 @@
 #include "SoundComparer.h"
 
+#include <iostream>
+
 #include "RefSoundLib.h"
 
 #define PERCENT_SIMILAR 0.80
@@ -13,7 +15,7 @@ bool SoundComparer::Compare(SoundAnalyzer& refSound, SoundAnalyzer& outBestSound
 	int compatibilityPercent = 0;
 	bool find = false;
 
-	std::vector<double> segmentSum;
+	/*std::vector<double> segmentSum;
 	double maxintensitySegment;
 	for (SpectrumSegment segment : refSound.data.SpectrumData)
 	{
@@ -22,15 +24,17 @@ bool SoundComparer::Compare(SoundAnalyzer& refSound, SoundAnalyzer& outBestSound
 
 	SoundComparer::MaxIntensity(segmentSum, maxintensitySegment);
 
-	refSoundSegmentIndex = SoundComparer::getIndexWhereIntensityIsMoreThan(segmentSum, maxintensitySegment * 0.20);
-
-	for (SoundAnalyzer analyzer : RefSoundLib::SoundLib)
+	refSoundSegmentIndex = SoundComparer::getIndexWhereIntensityIsMoreThan(segmentSum, maxintensitySegment * 0.20);*/
+	SoundAnalyzer analyzer;
+	for (int i = 0; i < RefSoundLib::SoundLib.size(); i++)//SoundAnalyzer analyzer : RefSoundLib::SoundLib)
 	{
+		analyzer = *RefSoundLib::SoundLib[i].get();
 		compatibilityPercent = 0;
+		refSoundSegmentIndex = 0; //remplacer 0 par IndexRefStart
 		for (SpectrumSegment segment : analyzer.data.SpectrumData)
 		{
 			percent = 0;
-			for (int i = 0; i < segment.SegmentData.size(); i++)
+			for (unsigned int i = 0; i < segment.SegmentData.size(); i++)
 			{
 				refIntensity = refSound.data.SpectrumData[refSoundSegmentIndex].SegmentData[i].Intensity;
 				if (segment.SegmentData[i].Intensity >=  refIntensity - (refIntensity / PERCENT_ACCEPTABLE) && segment.SegmentData[i].Intensity <= refIntensity + (refIntensity / PERCENT_ACCEPTABLE))
@@ -47,7 +51,12 @@ bool SoundComparer::Compare(SoundAnalyzer& refSound, SoundAnalyzer& outBestSound
 		if ((double)compatibilityPercent / (double)analyzer.data.SpectrumData.size() > PERCENT_SIMILAR)
 		{
 			outBestSound = analyzer;
+			std::cout << analyzer.SoundPath.c_str() << " match with " << ((double)compatibilityPercent / (double)analyzer.data.SpectrumData.size()) * 100 << "%" << std::endl;
 			find = true;
+		}
+		else
+		{
+			std::cout << analyzer.SoundPath.c_str() << " don't match" << std::endl;
 		}
 	}
 
@@ -67,7 +76,7 @@ double SoundComparer::SumIntensity(std::vector<SpectrumData> spectrum)
 int SoundComparer::MaxIntensity(std::vector<double> intensitySum, double& maxIntensityOut)
 {
 	int i = 0;
-	int index;
+	int index = -1;
 	double maxIntensity = 0;
 	for (double intensity : intensitySum)
 	{

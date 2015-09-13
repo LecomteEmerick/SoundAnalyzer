@@ -6,7 +6,7 @@
 class RefSoundLib
 {
 public:
-	static			std::vector<SoundAnalyzer> SoundLib;
-	static void		Initialize(char* MyApplicationPath);
+	static std::vector<std::unique_ptr<SoundAnalyzer>>		SoundLib;
+	static void												Initialize(char* MyApplicationPath);
 };
 
