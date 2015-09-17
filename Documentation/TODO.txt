@@ -1,0 +1,10 @@
+Sound Analyzer TODO
+
+1 - Map génération (EBO - VBO dans map.cpp)
+2 - Voice Recognition (Spectrum Boundary and comparaison)
+3 - Analyzer : 	a. ExtractRange
+				b. Condition Analyzer (example: if intensity > 0.50)
+				c. find other idea
+4 - Put object (import obj.)
+5 - Particule
+6 - Support Occulus
