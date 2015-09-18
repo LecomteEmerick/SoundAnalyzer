@@ -11,18 +11,15 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
+Debug/
+[DdebugPublic/
+Release/
 [Rr]eleases/
 !Libs/glew/lib/*
 !Libs/glew/lib/Release/*
 !Libs/glfw/libVS2013/*
-!Libs/glfw/libVS2013/Release/*
-!Libs/glfw/libVS2013/Debug/*
 !Libs/glfw/libVS2015/*
-!Libs/glfw/libVS2015/Release/*
-!Libs/glfw/libVS2015/Debug/*
+!Libs/boost/include/boost/preprocessor/*
 x64/
 x86/
 build/
