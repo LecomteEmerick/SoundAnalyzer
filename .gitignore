@@ -20,12 +20,13 @@ Release/
 !Libs/glfw/libVS2013/*
 !Libs/glfw/libVS2015/*
 !Libs/boost/include/boost/preprocessor/*
-x64/
-x86/
+!Libs/boost/include/boost/predef/architecture/*
+
 build/
 bld/
 [Bb]in/
 [Oo]bj/
+
 
 # Visual Studio 2015 cache/options directory
 .vs/
