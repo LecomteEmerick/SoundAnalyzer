@@ -47,12 +47,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>..\Libs\glfw\include\GLFW;..\Libs\glm\glm;..\Libs\glew\include\GL;..\Libs\FMod;..\Libs;..\Libs\boost\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_MSC_PLATFORM_TOOLSET_=$(PlatformToolsetVersion);%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>..\Libs\boost_1_59_0\libs;..\Libs\glfw\lib;..\Libs\glew\lib\Release\Win32;..\Libs\FMod;..\Libs\boost\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32s.lib;glu32.lib;glfw3.lib;libboost_system-vc140-mt-gd-1_59.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Libs;..\Libs\glew\lib\Release\Win32;..\Libs\FMod;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
@@ -63,11 +63,17 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>..\Libs\glfw\include\GLFW;..\Libs\glm\glm;..\Libs\glew\include\GL;..\Libs\FMod;..\Libs;..\Libs\boost\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <PreprocessorDefinitions>_MSC_PLATFORM_TOOLSET_=$(PlatformToolsetVersion);_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\Libs;..\Libs\glew\lib\Release\Win32;..\Libs\FMod;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>msvcrt.lib;libcmt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -83,6 +89,7 @@
     <ClCompile Include="RefSoundLib.cpp" />
     <ClCompile Include="SoundAnalyzer.cpp" />
     <ClCompile Include="SoundComparer.cpp" />
+    <ClCompile Include="SoundFile.cpp" />
     <ClCompile Include="SoundSaver.cpp" />
     <ClCompile Include="Time.cpp" />
   </ItemGroup>
@@ -90,6 +97,7 @@
     <ClInclude Include="AnalysisResultInclude.h" />
     <ClInclude Include="Analyzers.h" />
     <ClInclude Include="AnalyzerToolUtils.h" />
+    <ClInclude Include="LinkerVS.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="common\EsgiShader.h" />
     <ClInclude Include="DrawableItem.h" />
@@ -101,6 +109,7 @@
     <ClInclude Include="RefSoundLib.h" />
     <ClInclude Include="SoundAnalyzer.h" />
     <ClInclude Include="SoundComparer.h" />
+    <ClInclude Include="SoundFile.h" />
     <ClInclude Include="SoundSaver.h" />
     <ClInclude Include="SpectrumData.h" />
     <ClInclude Include="Time.h" />

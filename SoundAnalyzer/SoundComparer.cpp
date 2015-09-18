@@ -26,7 +26,7 @@ bool SoundComparer::Compare(SoundAnalyzer& refSound, SoundAnalyzer& outBestSound
 
 	refSoundSegmentIndex = SoundComparer::getIndexWhereIntensityIsMoreThan(segmentSum, maxintensitySegment * 0.20);*/
 	SoundAnalyzer analyzer;
-	for (int i = 0; i < RefSoundLib::SoundLib.size(); i++)//SoundAnalyzer analyzer : RefSoundLib::SoundLib)
+	for (unsigned int i = 0; i < RefSoundLib::SoundLib.size(); i++)//SoundAnalyzer analyzer : RefSoundLib::SoundLib)
 	{
 		analyzer = *RefSoundLib::SoundLib[i].get();
 		compatibilityPercent = 0;

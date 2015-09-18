@@ -1,12 +1,13 @@
 #include "RefSoundLib.h"
-#include "boost/filesystem.hpp"
 #include <iostream>
+
+#include "boost\filesystem.hpp"
 
 std::vector<std::unique_ptr<SoundAnalyzer>> RefSoundLib::SoundLib;
 
 void RefSoundLib::Initialize(char* MyApplicationPath)
 {
-	char* path = "D:/GitHub/SoundAnalyzer/SoundLib/";
+	std::string path = boost::filesystem::current_path().parent_path().generic_string() + "/SoundLib/";
 
 	for (auto i = boost::filesystem::directory_iterator(path); i != boost::filesystem::directory_iterator(); i++)
 	{

@@ -13,12 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\common">
-      <UniqueIdentifier>{148c6ada-cb21-49fb-90cf-f9dbdefdcbe3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers sources\common">
-      <UniqueIdentifier>{cd136148-f54d-43bd-b842-a743d0e2e4eb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Fichiers d%27en-tête\SoundAnalysis">
       <UniqueIdentifier>{f20a7e3f-e61e-4879-a743-0bd8cbfaed1b}</UniqueIdentifier>
     </Filter>
@@ -40,13 +34,22 @@
     <Filter Include="Fichiers d%27en-tête\SoundAnalysis\AnalysisResult">
       <UniqueIdentifier>{d55b8e0d-71d8-499b-a6e8-0efb625f6b9a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Shader">
+      <UniqueIdentifier>{148c6ada-cb21-49fb-90cf-f9dbdefdcbe3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Shader">
+      <UniqueIdentifier>{cd136148-f54d-43bd-b842-a743d0e2e4eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\VSUtils">
+      <UniqueIdentifier>{94095049-262b-4be5-9323-95aeabd527d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="common\EsgiShader.cpp">
-      <Filter>Fichiers sources\common</Filter>
+      <Filter>Fichiers sources\Shader</Filter>
     </ClCompile>
     <ClCompile Include="OpenGLRenderer.cpp">
       <Filter>Fichiers sources\OpenGL</Filter>
@@ -84,10 +87,13 @@
     <ClCompile Include="Analyzers.cpp">
       <Filter>Fichiers sources\SoundAnalysis</Filter>
     </ClCompile>
+    <ClCompile Include="SoundFile.cpp">
+      <Filter>Fichiers sources\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="common\EsgiShader.h">
-      <Filter>Fichiers d%27en-tête\common</Filter>
+      <Filter>Fichiers d%27en-tête\Shader</Filter>
     </ClInclude>
     <ClInclude Include="SpectrumData.h">
       <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
@@ -136,6 +142,12 @@
     </ClInclude>
     <ClInclude Include="Analyzers.h">
       <Filter>Fichiers d%27en-tête\SoundAnalysis</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundFile.h">
+      <Filter>Fichiers d%27en-tête\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkerVS.h">
+      <Filter>Fichiers d%27en-tête\VSUtils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

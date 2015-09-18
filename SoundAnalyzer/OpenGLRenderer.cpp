@@ -74,7 +74,7 @@ void OpenGLRenderer::Start()
 	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Landmark()));
 
 	//debug
-	SoundAnalyzer hello("D:/GitHub/SoundAnalyzer/SoundLib/hello.wav", 8192);
+	SoundAnalyzer hello( "C:/Users/elecomte/Documents/Visual Studio 2013/Projects/SoundAnalyzer/SoundLib/hello.wav", 8192);
 	SoundAnalyzer refSound;
 	bool find = SoundComparer::Compare(hello, refSound);
 

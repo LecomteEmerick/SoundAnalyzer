@@ -66,14 +66,13 @@ void MicRecorder::StartRecording()
 
 void MicRecorder::StopRecording(SoundAnalyzer& analyzer)
 {
-	FMOD::Channel* channel;
 
 	this->sys->recordStop(this->recordedDriver);
 
 	this->isRecording = false;
 
 	analyzer = SoundAnalyzer(this->sys, this->Sound, 8192);
-	//this->sys->playSound(analyzer.Sound, 0, false, &channel); //debug
+	//this->sys->playSound(analyzer.Sound, 0, false, 0); //debug
 
 }
 
