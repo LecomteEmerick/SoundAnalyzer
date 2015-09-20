@@ -43,7 +43,7 @@ void OpenGLRenderer::Initialize(int argc, char* argv[])
 	OpenGLRenderer::Depth = 10.0f;
 	OpenGLRenderer::MainCamera.setPosition(glm::vec3(0.0f, 0.0f, OpenGLRenderer::Depth));
 	OpenGLRenderer::MainCamera.lookAt(glm::vec3(0.0f, 0.0f, 0.0f));
-	OpenGLRenderer::CameraSpeed = 1.0f;
+	OpenGLRenderer::CameraSpeed = 100.0f;
 	OpenGLRenderer::CameraSensitivity = 50.0f;
 
 	OpenGLRenderer::micRecorder = MicRecorder();
@@ -73,13 +73,13 @@ void OpenGLRenderer::Start()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 
-	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Map()));
+	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Map(*RefSoundLib::SoundLib[0].get())));
 	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Landmark()));
 
 	//debug
-	SoundAnalyzer hello( std::string(boost::filesystem::current_path().parent_path().generic_string() + "/SoundLib/hello.wav").c_str(), 8192);
-	SoundAnalyzer refSound;
-	bool find = SoundComparer::Compare(hello, refSound);
+	//SoundAnalyzer hello( std::string(boost::filesystem::current_path().parent_path().generic_string() + "/SoundLib/hello.wav").c_str(), 8192);
+	//SoundAnalyzer refSound;
+	//bool find = SoundComparer::Compare(hello, refSound);
 
 	Time::Start();
 
