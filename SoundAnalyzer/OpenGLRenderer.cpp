@@ -4,6 +4,9 @@
 #include "SoundSaver.h"
 #include "SoundComparer.h"
 
+//include de test pour la reconnaissance vocal a enlever par la suite
+#include "boost\filesystem.hpp"
+
 std::vector<std::shared_ptr<DrawableItem>> OpenGLRenderer::DrawableElements;
 
 //MainLoop
@@ -74,7 +77,7 @@ void OpenGLRenderer::Start()
 	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Landmark()));
 
 	//debug
-	SoundAnalyzer hello( "C:/Users/elecomte/Documents/Visual Studio 2013/Projects/SoundAnalyzer/SoundLib/hello.wav", 8192);
+	SoundAnalyzer hello( std::string(boost::filesystem::current_path().parent_path().generic_string() + "/SoundLib/hello.wav").c_str(), 8192);
 	SoundAnalyzer refSound;
 	bool find = SoundComparer::Compare(hello, refSound);
 
