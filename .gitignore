@@ -16,6 +16,8 @@ Debug/
 [Dd]ebugPublic/
 Release/
 [Rr]eleases/
+!Libs/SOIL/lib/VS2015/*
+!Libs/SOIL/lib/VS2015/debug/*
 !Libs/glew/lib/*
 !Libs/glew/lib/Release/*
 !Libs/glfw/libVS2013/*
