@@ -58,12 +58,17 @@ void Landmark::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatr
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
 	glDrawElements(GL_LINES, 6, GL_UNSIGNED_SHORT, nullptr);
 
+	glPointSize(1.0f);
+
 	glUseProgram(0);
 }
 
 void Landmark::Destroy()
 {
+	glDeleteBuffers(1, &EBO);
+	glDeleteBuffers(1, &VBO);
 
+	this->Shader.Destroy();
 }
 
 

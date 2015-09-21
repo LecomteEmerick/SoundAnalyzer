@@ -1,5 +1,6 @@
 #include "Map.h"
 #include "Analyzers.h"
+#include <iostream>
 
 Map::Map(SoundAnalyzer& Sound)
 {
@@ -37,6 +38,7 @@ void Map::ConstructEBO()
 	glGenBuffers(1, &EBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices.front(), GL_STATIC_DRAW);
+
 }
 
 void Map::ConstructVBO()
@@ -51,15 +53,18 @@ void Map::ConstructVBO()
 
 	for (float i = -(this->Length / 2.0f); i < (this->Length / 2.0f); ++i)
 	{
+		float rndR = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		float rndG = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		float rndB = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 		for (float j = -(this->Length / 2.0f ); j < (this->Length / 2.0f); ++j)
 		{
 			vertex.push_back(j); //x
 			vertex.push_back((float)tickAmplitude.CumuledAmplitudePerTick[j + (this->Length / 2)]); //y
 			vertex.push_back(i); //z
 
-			vertex.push_back(static_cast <float> (rand()) / static_cast <float> (RAND_MAX)); //r
-			vertex.push_back(static_cast <float> (rand()) / static_cast <float> (RAND_MAX)); //g
-			vertex.push_back(static_cast <float> (rand()) / static_cast <float> (RAND_MAX)); //b
+			vertex.push_back(rndR); //r
+			vertex.push_back(rndG); //g
+			vertex.push_back(rndB); //b
 		}
 	}
 
@@ -92,8 +97,6 @@ void Map::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, c
 	glEnableVertexAttribArray(colorLocation);
 	glVertexAttribPointer(colorLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float)* 6, (void*)(3 * sizeof(float)));
 
-	glDrawArrays(GL_TRIANGLES, 0, (this->Length) * (this->Length));
-
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
 	glDrawElements(GL_TRIANGLES, (this->Length-1) * (this->Length-1) * 6, GL_UNSIGNED_INT, nullptr);
 
@@ -102,9 +105,15 @@ void Map::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, c
 
 void Map::Destroy()
 {
+	//delete aussi les textures
 
+	glDeleteBuffers(1, &EBO);
+	glDeleteBuffers(1, &VBO);
+
+	this->Shader.Destroy();
 }
 
 Map::~Map()
 {
+	this->Destroy();
 }
