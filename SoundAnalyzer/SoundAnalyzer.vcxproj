@@ -63,7 +63,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>..\Libs\glfw\include\GLFW;..\Libs\glm\glm;..\Libs\glew\include\GL;..\Libs\FMod;..\Libs;..\Libs\boost\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Libs\glfw\include\GLFW;..\Libs\glm\glm;..\Libs\glew\include\GL;..\Libs\FMod;..\Libs;..\Libs\boost\include;..\Libs \SOIL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
       <PreprocessorDefinitions>_MSC_PLATFORM_TOOLSET_=$(PlatformToolsetVersion);_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>

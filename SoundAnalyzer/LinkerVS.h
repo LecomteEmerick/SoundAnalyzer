@@ -12,6 +12,7 @@
 		#pragma comment (lib, "boost\\libVS2015\\libboost_system-vc140-mt-gd-1_59.lib")
 		#pragma comment (lib, "boost\\libVS2015\\libboost_filesystem-vc140-mt-gd-1_59.lib")
 		#pragma comment (lib, "glfw\\libVS2015\\Debug\\glfw3.lib")
+		#pragma comment (lib, "SOIL\\lib\\VS2015\\debug\\SOIL.lib")	
 	//Release
 	#else
 		#pragma comment (lib, "boost\\libVS2015\\libboost_system-vc140-mt-1_59.lib")

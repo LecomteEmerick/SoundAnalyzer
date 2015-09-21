@@ -1,19 +1,41 @@
 #include "Map.h"
 #include "Analyzers.h"
 #include <iostream>
+#include "SOIL\include\SOIL.h"
+#include "boost\filesystem.hpp"
 
 Map::Map(SoundAnalyzer& Sound)
 {
 	this->RefSound = Sound;
 
-	this->Shader.LoadVertexShader("basic.vs");
-	this->Shader.LoadFragmentShader("basic.fs");
+	this->Shader.LoadVertexShader("textureShader.vs");
+	this->Shader.LoadFragmentShader("textureShader.fs");
 	this->Shader.Create();
 
 	this->ShaderProgram = this->Shader.GetProgram();
 
 	this->ConstructVBO();
 	this->ConstructEBO();
+
+	this->GenTexture("grass_01.jpg");
+}
+
+void Map::GenTexture(const char* textureName)
+{
+	glGenTextures(1, &this->TextureBuffer);
+	glBindTexture(GL_TEXTURE_2D, this->TextureBuffer);
+
+	int width, height;
+	unsigned char* image =
+		SOIL_load_image(std::string(boost::filesystem::current_path().parent_path().generic_string() + "/Texture/" + textureName).c_str(), &width, &height, 0, SOIL_LOAD_RGB);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB,
+		GL_UNSIGNED_BYTE, image);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_MIRRORED_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_MIRRORED_REPEAT);
+
+	SOIL_free_image_data(image);
 }
 
 void Map::ConstructEBO()
@@ -38,7 +60,6 @@ void Map::ConstructEBO()
 	glGenBuffers(1, &EBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices.front(), GL_STATIC_DRAW);
-
 }
 
 void Map::ConstructVBO()
@@ -96,6 +117,10 @@ void Map::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, c
 	GLint colorLocation = glGetAttribLocation(this->ShaderProgram, "a_color");
 	glEnableVertexAttribArray(colorLocation);
 	glVertexAttribPointer(colorLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float)* 6, (void*)(3 * sizeof(float)));
+
+	//GLint texAttrib = glGetAttribLocation(this->ShaderProgram, "texcoord");
+	//glEnableVertexAttribArray(texAttrib);
+	//glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE,7 * sizeof(float), (void*)(5 * sizeof(float)));
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
 	glDrawElements(GL_TRIANGLES, (this->Length-1) * (this->Length-1) * 6, GL_UNSIGNED_INT, nullptr);

@@ -11,10 +11,12 @@ public:
 	void			Destroy();
 					~Map();
 private:
+	void			GenTexture(const char* textureName);
 	void			ConstructEBO();
 	void			ConstructVBO();
 	SoundAnalyzer	RefSound;
 	float			Length;
+	GLuint			TextureBuffer;
 	GLuint			EBO;
 	GLuint			VBO;
 	GLuint			ShaderProgram;

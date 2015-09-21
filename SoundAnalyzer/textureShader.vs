@@ -1,12 +1,16 @@
-attribute vec4 a_position;
-attribute vec4 a_color;
+#version 330
 
-uniform mat4 u_projectionMatrix;
-uniform mat4 u_viewMatrix;
-uniform mat4 u_worldMatrix;
+in vec4 a_position;
+in vec4 a_color;
 
-varying vec3 v_normal;
-varying vec4 v_color;
+
+in mat4 u_projectionMatrix;
+in mat4 u_viewMatrix;
+in mat4 u_worldMatrix;
+
+out mat4 v_position;
+out vec3 v_normal;
+out vec4 v_color;
 
 const vec3 c_lightDirection = vec3(0.0, 1.0, 0.0);
 
@@ -14,7 +18,7 @@ const vec3 c_lightDirection = vec3(0.0, 1.0, 0.0);
 
 void main(void)
 {
-	gl_Position = u_projectionMatrix * u_viewMatrix * u_worldMatrix * a_position;
+	v_position = u_projectionMatrix * u_viewMatrix * u_worldMatrix * a_position;
 
 	vec3 normal = a_position.xyz;
 	normal = normalize(normal);
