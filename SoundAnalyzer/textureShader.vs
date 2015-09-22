@@ -1,24 +1,25 @@
 #version 330
 
-in vec4 a_position;
-in vec4 a_color;
+const vec3 c_lightDirection = vec3(0.0, 1.0, 0.0);
 
+uniform mat4 u_projectionMatrix;
+uniform mat4 u_viewMatrix;
+uniform mat4 u_worldMatrix;
 
-in mat4 u_projectionMatrix;
-in mat4 u_viewMatrix;
-in mat4 u_worldMatrix;
+layout(location=1) in vec4 a_position;
+layout(location=2) in vec4 a_color;
 
-out mat4 v_position;
+//layout(location=3) in vec2 texcoord;
+
+out vec4 v_position;
 out vec3 v_normal;
 out vec4 v_color;
 
-const vec3 c_lightDirection = vec3(0.0, 1.0, 0.0);
-
-#define VERTEX_LIGHTING 1
+#define VERTEX_LIGHTING 0
 
 void main(void)
 {
-	v_position = u_projectionMatrix * u_viewMatrix * u_worldMatrix * a_position;
+	gl_Position = u_projectionMatrix * u_viewMatrix * u_worldMatrix * vec4(1.0,1.0,1.0,1.0);//* a_position;
 
 	vec3 normal = a_position.xyz;
 	normal = normalize(normal);
@@ -31,7 +32,7 @@ void main(void)
 	
 	v_color = a_color * NdotL;
 #else
-	v_color = a_color;
+	v_color = vec4(1.0,1.0,1.0,1.0); // a_color;
 #endif
 }
 

@@ -8,8 +8,8 @@ Map::Map(SoundAnalyzer& Sound)
 {
 	this->RefSound = Sound;
 
-	this->Shader.LoadVertexShader("textureShader.vs");
-	this->Shader.LoadFragmentShader("textureShader.fs");
+	this->Shader.LoadVertexShader("basic.vs");
+	this->Shader.LoadFragmentShader("basic.fs");
 	this->Shader.Create();
 
 	this->ShaderProgram = this->Shader.GetProgram();
@@ -17,7 +17,19 @@ Map::Map(SoundAnalyzer& Sound)
 	this->ConstructVBO();
 	this->ConstructEBO();
 
-	this->GenTexture("grass_01.jpg");
+	//this->GenTexture("grass_01.jpg");
+
+	std::vector<float> position;
+	position.push_back(0.0f);
+	position.push_back(0.0f);
+	position.push_back(0.0f);
+	position.push_back(1.0f);
+
+	glGenBuffers(1, &this->positionBuffer);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->positionBuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, position.size() * sizeof(float), &position.front(), GL_STATIC_DRAW);
+
+	glGenBuffers(1, &this->colorBuffer);
 }
 
 void Map::GenTexture(const char* textureName)
@@ -60,6 +72,7 @@ void Map::ConstructEBO()
 	glGenBuffers(1, &EBO);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(unsigned int), &indices.front(), GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 void Map::ConstructVBO()
@@ -108,23 +121,34 @@ void Map::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, c
 	GLint worldLocation = glGetUniformLocation(this->ShaderProgram, "u_worldMatrix");
 	glUniformMatrix4fv(worldLocation, 1, GL_FALSE, glm::value_ptr(worldTransform));
 
-	glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
+	//glBindBuffer(GL_ARRAY_BUFFER, this->VBO);
 
-	GLint positionLocation = glGetAttribLocation(this->ShaderProgram, "a_position");
-	glEnableVertexAttribArray(positionLocation);
-	glVertexAttribPointer(positionLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, 0);
+	/*glEnableVertexAttribArray(1);
+	glBindBuffer(GL_ARRAY_BUFFER, this->positionBuffer);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 4, 0);
 
-	GLint colorLocation = glGetAttribLocation(this->ShaderProgram, "a_color");
-	glEnableVertexAttribArray(colorLocation);
-	glVertexAttribPointer(colorLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float)* 6, (void*)(3 * sizeof(float)));
+	glEnableVertexAttribArray(2);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(float)* 6, (void*)(3 * sizeof(float)));*/
+
+	GLint color = glGetAttribLocation(this->ShaderProgram, "v_color");
+	glEnableVertexAttribArray(color);
+	glVertexAttribPointer(color, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, (void*)(3 * sizeof(float)));
 
 	//GLint texAttrib = glGetAttribLocation(this->ShaderProgram, "texcoord");
 	//glEnableVertexAttribArray(texAttrib);
 	//glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE,7 * sizeof(float), (void*)(5 * sizeof(float)));
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
-	glDrawElements(GL_TRIANGLES, (this->Length-1) * (this->Length-1) * 6, GL_UNSIGNED_INT, nullptr);
+	glDrawElements(GL_TRIANGLES, (this->Length-1) * (this->Length-1) * 6, GL_UNSIGNED_INT, 0);
 
+	GLenum err = glGetError();
+	if (err != GL_NO_ERROR)
+	{
+		std::cout << "t" << std::endl;
+	}
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glUseProgram(0);
 }
 

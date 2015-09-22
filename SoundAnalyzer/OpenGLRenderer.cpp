@@ -43,7 +43,7 @@ void OpenGLRenderer::Initialize(int argc, char* argv[])
 	OpenGLRenderer::Depth = 10.0f;
 	OpenGLRenderer::MainCamera.setPosition(glm::vec3(0.0f, 0.0f, OpenGLRenderer::Depth));
 	OpenGLRenderer::MainCamera.lookAt(glm::vec3(0.0f, 0.0f, 0.0f));
-	OpenGLRenderer::CameraSpeed = 100.0f;
+	OpenGLRenderer::CameraSpeed = 10.0f;
 	OpenGLRenderer::CameraSensitivity = 50.0f;
 
 	OpenGLRenderer::micRecorder = MicRecorder();

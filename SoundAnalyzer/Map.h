@@ -19,7 +19,8 @@ private:
 	GLuint			TextureBuffer;
 	GLuint			EBO;
 	GLuint			VBO;
+	GLuint			colorBuffer;
+	GLuint			positionBuffer;
 	GLuint			ShaderProgram;
 	EsgiShader		Shader;
 };
-

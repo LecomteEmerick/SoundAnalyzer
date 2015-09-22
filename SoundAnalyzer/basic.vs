@@ -10,7 +10,7 @@ varying vec4 v_color;
 
 const vec3 c_lightDirection = vec3(0.0, 1.0, 0.0);
 
-#define VERTEX_LIGHTING 1
+#define VERTEX_LIGHTING 0
 
 void main(void)
 {
