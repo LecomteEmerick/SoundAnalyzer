@@ -72,7 +72,7 @@ void Map::ConstructVBO()
 	std::vector<float> vertex;
 
 	NormalizedDataResult functionRes;
-	this->GetData(DIRECT_SPECTRUM, functionRes);
+	this->GetData(CUMULED_AVERAGE_AMPLITUDE, functionRes);
 
 	this->NumberRow = static_cast<float>(functionRes.Length);
 	this->NumberColumn = static_cast<float>(functionRes.Width);
