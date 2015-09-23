@@ -72,10 +72,10 @@ void Map::ConstructVBO()
 	std::vector<float> vertex;
 
 	NormalizedDataResult functionRes;
-	this->GetData(CUMULED_AVERAGE_AMPLITUDE, functionRes);
+	this->GetData(DIRECT_SPECTRUM, functionRes);
 
-	this->NumberColumn = static_cast<float>(functionRes.Length);
-	this->NumberRow = static_cast<float>(functionRes.Width);
+	this->NumberRow = static_cast<float>(functionRes.Length);
+	this->NumberColumn = static_cast<float>(functionRes.Width);
 
 	vertex.reserve(functionRes.Length * functionRes.Width * 6); //6 elements par point(x,y,z, RGB) * nbpoint (length * length) pour le moment
 
@@ -110,6 +110,19 @@ void Map::GetData(int FunctionIndex, NormalizedDataResult& result)
 	case CUMULED_AVERAGE_AMPLITUDE:
 		Analyzers::GetCumuledAmplitudePerTickNormalized(RefSound, result);
 		break;
+	case DIRECT_SPECTRUM:
+		result.Length = this->RefSound.data.SpectrumData.size();
+		result.Width = this->RefSound.data.SpectrumData[0].SegmentData.size();
+		result.Data.resize(result.Length);
+		for (int i = 0; i < result.Length; ++i)
+		{
+			result.Data[i].resize(result.Width);
+			for (int j = 0; j < result.Width; ++j)
+			{
+				result.Data[i][j] = this->RefSound.data.SpectrumData[i].SegmentData[j].Intensity * 100;
+			}
+		}
+		break;
 	}
 }
 
@@ -133,6 +146,9 @@ void Map::Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix, c
 
 	glEnableVertexAttribArray(COLOR_LOCATION);
 	glVertexAttribPointer(COLOR_LOCATION, 3, GL_FLOAT, GL_FALSE, sizeof(float)* 6, (void*)(3 * sizeof(float)));
+
+	//debug
+	//glDrawArrays(GL_POINTS, 0, this->NumberRow * this->NumberColumn);
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, this->EBO);
 	glDrawElements(GL_TRIANGLES, static_cast<GLsizei>((this->NumberRow - 1) * (this->NumberColumn - 1) * 6), GL_UNSIGNED_INT, 0);

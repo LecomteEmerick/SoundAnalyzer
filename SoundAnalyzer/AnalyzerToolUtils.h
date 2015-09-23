@@ -2,7 +2,7 @@
 
 #include "SoundAnalyzer.h"
 
-#define SPECTRUM_BUFFER_SIZE 32768 //précision par défault 1024
+#define SPECTRUM_BUFFER_SIZE 16384 //précision par défault 1024 max 16384
 
 class AnalyzerToolUtils
 {

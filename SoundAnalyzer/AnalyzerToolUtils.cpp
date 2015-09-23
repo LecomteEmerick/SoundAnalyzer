@@ -24,7 +24,7 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 	soundAnalyzer->sys->createDSPByType(FMOD_DSP_TYPE_FFT, &dspSpectrum);
 	dspSpectrum->setParameterInt(FMOD_DSP_FFT_WINDOWSIZE, soundAnalyzer->GetWindowSize());
 	dspSpectrum->getParameterInt(FMOD_DSP_FFT_WINDOWSIZE, &musicSpectrumSize, 0, 0);
-	dspSpectrum->setParameterInt(FMOD_DSP_FFT_WINDOWTYPE, FMOD_DSP_FFT_WINDOW_BLACKMAN);
+	dspSpectrum->setParameterInt(FMOD_DSP_FFT_WINDOWTYPE, FMOD_DSP_FFT_WINDOW_TRIANGLE);
 
 	//Master Channel -> Add Dsp
 	soundAnalyzer->sys->getMasterChannelGroup(&masterChannel);
@@ -44,8 +44,8 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 
 	do{
 		res = dspSpectrum->getParameterData(FMOD_DSP_FFT_SPECTRUMDATA, (void **)&dataSpectrum, 0, 0, 0);
-		SpectrumSegment segment(musicSpectrumSize, musicSpectrumSize / niquistRate);
-		for (int bin = 0; bin < dataSpectrum->length; bin++)
+		SpectrumSegment segment(musicSpectrumSize / 2, musicSpectrumSize / niquistRate);
+		for (int bin = 0; bin < dataSpectrum->length/2; bin++)
 		{
 			val = 0;
 			for (int channel = 0; channel < dataSpectrum->numchannels; channel++)
