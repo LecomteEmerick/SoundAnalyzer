@@ -95,8 +95,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnalysisResultInclude.h" />
+    <ClInclude Include="AnalyzerFonctionIndex.h" />
     <ClInclude Include="Analyzers.h" />
     <ClInclude Include="AnalyzerToolUtils.h" />
+    <ClInclude Include="CommonShaderIndex.h" />
     <ClInclude Include="LinkerVS.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="common\EsgiShader.h" />

@@ -149,5 +149,11 @@
     <ClInclude Include="LinkerVS.h">
       <Filter>Fichiers d%27en-tête\VSUtils</Filter>
     </ClInclude>
+    <ClInclude Include="CommonShaderIndex.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="AnalyzerFonctionIndex.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
