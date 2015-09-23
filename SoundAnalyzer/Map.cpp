@@ -119,7 +119,7 @@ void Map::GetData(int FunctionIndex, NormalizedDataResult& result)
 			result.Data[i].resize(result.Width);
 			for (int j = 0; j < result.Width; ++j)
 			{
-				result.Data[i][j] = this->RefSound.data.SpectrumData[i].SegmentData[j].Intensity * 100;
+				result.Data[i][j] = this->RefSound.data.SpectrumData[i].SegmentData[j].Intensity * 1000;
 			}
 		}
 		break;
