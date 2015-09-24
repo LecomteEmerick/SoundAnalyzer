@@ -16,6 +16,8 @@ private:
 	void				GenTexture(const char* textureName);
 	void				ConstructEBO();
 	void				ConstructVBO();
+	void				FillVectorVBO(const int startIndex, const int endIndex, const NormalizedDataResult& dataSource, std::vector<float>& vertex);
+	void				FillVectorEBO(const int startIndex, const int endIndex, std::vector<unsigned int>& ind);
 
 	SoundAnalyzer		RefSound;
 	float				NumberRow;

@@ -18,7 +18,7 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 
 	//sound time in MS
 	soundAnalyzer->Sound->getLength(&soundTime, FMOD_TIMEUNIT_MS);
-	soundAnalyzer->data.SpectrumData.reserve(soundTime);
+	soundAnalyzer->data.SpectrumData.resize(soundTime);
 
 	//DSP / FFT / Window
 	soundAnalyzer->sys->createDSPByType(FMOD_DSP_TYPE_FFT, &dspSpectrum);
@@ -59,6 +59,22 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 		soundAnalyzer->sys->update();
 		i += ((double)SPECTRUM_BUFFER_SIZE / (double)sampleRate) * 1000;
 	} while (i < (soundTime));
+}
+
+void AnalyzerToolUtils::ExtractSpectrum(SoundAnalyzer* soundAnalyzer,const FMOD_DSP_PARAMETER_FFT dataSpectrum, SpectrumSegment& segment, int index)
+{
+	int val;
+	for (int bin = 0; bin < dataSpectrum.length / 2; bin++)
+	{
+		val = 0;
+		for (int channel = 0; channel < dataSpectrum.numchannels; channel++)
+		{
+			val += dataSpectrum.spectrum[channel][bin];
+		}
+		segment.AddSegment(val);
+	}
+
+	soundAnalyzer->data.SpectrumData.at(index) = segment;
 }
 
 void AnalyzerToolUtils::ExtractRange(const SoundAnalyzer& analyzer, SoundSpectrum& outSpectrum)

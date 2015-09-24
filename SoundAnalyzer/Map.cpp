@@ -6,6 +6,7 @@
 #include <iostream>
 #include "SOIL\include\SOIL.h"
 #include "boost\filesystem.hpp"
+#include "boost\thread.hpp"
 
 Map::Map(SoundAnalyzer& Sound)
 {
@@ -44,21 +45,26 @@ void Map::GenTexture(const char* textureName)
 
 void Map::ConstructEBO()
 {
+	boost::thread_group threadpool;
 	std::vector<unsigned int> indices;
-	indices.reserve((static_cast<unsigned int>(this->NumberRow)-1) * (static_cast<unsigned int>(this->NumberColumn) -1) * 6);
+	indices.resize((static_cast<unsigned int>(this->NumberRow)-1) * (static_cast<unsigned int>(this->NumberColumn) -1) * 6);
 
-	for (float i = 0; i < this->NumberRow -1; ++i)
+	unsigned int cpucore = boost::thread::hardware_concurrency();
+	if (cpucore < 2)
 	{
-		for (float j = 0; j < this->NumberColumn -1; ++j)
+		this->FillVectorEBO(0, this->NumberRow, indices);
+	}
+	else
+	{
+		int offset = 0;
+		int step = static_cast<int>(this->NumberRow-1) / cpucore;
+		for (int i = 0; i < cpucore - 1; ++i)
 		{
-			indices.push_back((unsigned int)(j +     ( i      * this->NumberColumn)    ));
-			indices.push_back((unsigned int)(j +     ((i + 1) * this->NumberColumn) + 1));
-			indices.push_back((unsigned int)(j + 1 + (i       * this->NumberColumn)    ));
-
-			indices.push_back((unsigned int)(j + ( i      * this->NumberColumn)    ));
-			indices.push_back((unsigned int)(j + ((i + 1) * this->NumberColumn)    ));
-			indices.push_back((unsigned int)(j + ((i + 1) * this->NumberColumn) + 1));
+			threadpool.create_thread(boost::bind(&Map::FillVectorEBO, this, offset, offset + step, boost::ref(indices)));
+			offset += step;
 		}
+		threadpool.create_thread(boost::bind(&Map::FillVectorEBO, this, offset, this->NumberRow, boost::ref(indices)));
+		threadpool.join_all();
 	}
 
 	glGenBuffers(1, &EBO);
@@ -67,8 +73,29 @@ void Map::ConstructEBO()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
+void Map::FillVectorEBO(const int startIndex, const int endIndex, std::vector<unsigned int>& indices)
+{
+	int element = startIndex * (this->NumberColumn - 1) * 6;
+	for (float i = startIndex; i < endIndex - 1; ++i)
+	{
+		for (float j = 0; j < this->NumberColumn - 1; ++j)
+		{
+			indices.at(element) = ((unsigned int)(j + (i      * this->NumberColumn)));
+			indices.at(element + 1) = ((unsigned int)(j + ((i + 1) * this->NumberColumn) + 1));
+			indices.at(element + 2) = ((unsigned int)(j + 1 + (i       * this->NumberColumn)));
+
+			indices.at(element + 3) = ((unsigned int)(j + (i      * this->NumberColumn)));
+			indices.at(element + 4) = ((unsigned int)(j + ((i + 1) * this->NumberColumn)));
+			indices.at(element + 5) = ((unsigned int)(j + ((i + 1) * this->NumberColumn) + 1));
+
+			element += 6;
+		}
+	}
+}
+
 void Map::ConstructVBO()
 {
+	boost::thread_group threadpool;
 	std::vector<float> vertex;
 
 	NormalizedDataResult functionRes;
@@ -77,30 +104,53 @@ void Map::ConstructVBO()
 	this->NumberRow = static_cast<float>(functionRes.Length);
 	this->NumberColumn = static_cast<float>(functionRes.Width);
 
-	vertex.reserve(functionRes.Length * functionRes.Width * 6); //6 elements par point(x,y,z, RGB) * nbpoint (length * length) pour le moment
+	vertex.resize(functionRes.Length * functionRes.Width * 6); //6 elements par point(x,y,z, RGB) * nbpoint (length * length) pour le moment
 
-	//A voir pour le multithread avec boost::thread
-	for (float i = -(this->NumberRow / 2.0f); i < (this->NumberRow / 2.0f); ++i)
+	unsigned int cpucore = boost::thread::hardware_concurrency();
+	if (cpucore < 2)
 	{
-		float rndR = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-		float rndG = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-		float rndB = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
-		for (float j = -(this->NumberColumn / 2.0f ); j < (this->NumberColumn / 2.0f); ++j)
+		this->FillVectorVBO(0, this->NumberRow,  functionRes, vertex);
+	}
+	else 
+	{
+		int offset = 0;
+		int step = static_cast<int>(this->NumberRow)  / cpucore;
+		for (int i = 0; i < cpucore-1; ++i)
 		{
-			vertex.push_back(j); //x
-			vertex.push_back( functionRes.Data[(int)i + (int)(this->NumberRow / 2.0f)][(int)(j + (this->NumberColumn / 2.0f))] * 2.0f); //y
-			vertex.push_back(i); //z
-
-			vertex.push_back(rndR); //r
-			vertex.push_back(rndG); //g
-			vertex.push_back(rndB); //b
+			threadpool.create_thread(boost::bind(&Map::FillVectorVBO, this, offset, offset + step, boost::ref(functionRes), boost::ref(vertex)));
+			offset += step;
 		}
+		threadpool.create_thread(boost::bind(&Map::FillVectorVBO, this, offset, this->NumberRow, boost::ref(functionRes), boost::ref(vertex)));
+		threadpool.join_all();
 	}
 
 	glGenBuffers(1, &VBO);
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, vertex.size() * sizeof(float), &vertex.front(), GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void Map::FillVectorVBO(const int startIndex,const int endIndex, const NormalizedDataResult& dataSource, std::vector<float>& vertex)
+{
+	int element = startIndex * this->NumberColumn * 6;
+	for (float i = startIndex -(this->NumberRow / 2.0f); i < endIndex - (this->NumberRow / 2.0f); ++i)
+	{
+		float rndR = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		float rndG = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		float rndB = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+		for (float j = -(this->NumberColumn / 2.0f); j < (this->NumberColumn / 2.0f); ++j)
+		{
+			vertex.at(element) = j; //x
+			vertex.at(element + 1) = dataSource.Data[(int)i + (int)(this->NumberRow / 2.0f)][(int)(j + (this->NumberColumn / 2.0f))] * 2.0f; //y
+			vertex.at(element + 2) = i; //z
+
+			vertex.at(element + 3) = rndR; //r
+			vertex.at(element + 4) = rndG; //g
+			vertex.at(element + 5) = rndB; //b
+
+			element += 6;
+		}
+	}
 }
 
 void Map::GetData(int FunctionIndex, NormalizedDataResult& result)
