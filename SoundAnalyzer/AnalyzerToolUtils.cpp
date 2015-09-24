@@ -18,7 +18,7 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 
 	//sound time in MS
 	soundAnalyzer->Sound->getLength(&soundTime, FMOD_TIMEUNIT_MS);
-	soundAnalyzer->data.SpectrumData.resize(soundTime);
+	soundAnalyzer->data.SpectrumData.reserve(soundTime);
 
 	//DSP / FFT / Window
 	soundAnalyzer->sys->createDSPByType(FMOD_DSP_TYPE_FFT, &dspSpectrum);
