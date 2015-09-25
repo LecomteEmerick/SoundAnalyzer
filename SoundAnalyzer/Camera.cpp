@@ -11,7 +11,7 @@ _horizontalAngle(0.0f),
 _verticalAngle(0.0f),
 _fieldOfView(45.0f),
 _nearPlane(0.01f),
-_farPlane(1000.0f),
+_farPlane(500.0f),
 _viewportAspectRatio(4.0f / 3.0f)
 {
 }

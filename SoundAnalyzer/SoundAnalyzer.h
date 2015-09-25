@@ -3,6 +3,8 @@
 #include "SpectrumData.h"
 #include "fmod.hpp"
 
+#define MAX_CHANNELS 2
+
 class SoundAnalyzer
 {
 public:

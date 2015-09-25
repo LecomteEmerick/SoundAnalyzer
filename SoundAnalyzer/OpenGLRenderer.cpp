@@ -73,7 +73,7 @@ void OpenGLRenderer::Start()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_CULL_FACE);
 
-	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Map(*RefSoundLib::SoundLib[1].get())));
+	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Map(*RefSoundLib::SoundLib[0].get())));
 	OpenGLRenderer::RegisterElement(std::shared_ptr<DrawableItem>(new Landmark()));
 
 	//debug

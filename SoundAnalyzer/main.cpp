@@ -2,7 +2,7 @@
 
 #pragma comment (lib, "fmod_vc.lib")
 
-#include "LinkerVS.h"
+//#include "LinkerVS.h"
 #include "OpenGLRenderer.h"
 
 int main(int argc, char **argv)

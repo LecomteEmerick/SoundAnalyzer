@@ -99,7 +99,7 @@ void Map::ConstructVBO()
 	std::vector<float> vertex;
 
 	NormalizedDataResult functionRes;
-	this->GetData(CUMULED_AVERAGE_AMPLITUDE, functionRes);
+	this->GetData(DIRECT_SPECTRUM, functionRes);
 
 	this->NumberRow = static_cast<float>(functionRes.Length);
 	this->NumberColumn = static_cast<float>(functionRes.Width);
@@ -169,7 +169,7 @@ void Map::GetData(int FunctionIndex, NormalizedDataResult& result)
 			result.Data[i].resize(result.Width);
 			for (int j = 0; j < result.Width; ++j)
 			{
-				result.Data[i][j] = this->RefSound.data.SpectrumData[i].SegmentData[j].Intensity * 1000;
+				result.Data[i][j] = this->RefSound.data.SpectrumData[i].SegmentData[j].Intensity * 100;
 			}
 		}
 		break;

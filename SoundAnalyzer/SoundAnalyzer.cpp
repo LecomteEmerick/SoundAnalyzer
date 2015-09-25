@@ -5,7 +5,7 @@ SoundAnalyzer::SoundAnalyzer(const char* soundPath,int windowSize) //WindowSize 
 {
 	//Init and CreateSound
 	FMOD::System_Create(&sys);
-	this->sys->init(2, FMOD_INIT_STREAM_FROM_UPDATE, NULL);
+	this->sys->init(MAX_CHANNELS, FMOD_INIT_STREAM_FROM_UPDATE, NULL);
 	FMOD_RESULT res = sys->createSound(soundPath, FMOD_CREATESTREAM, NULL, &this->Sound);
 
 	this->SoundPath = std::string(soundPath);
