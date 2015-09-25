@@ -1,4 +1,5 @@
 #include "AnalyzerToolUtils.h"
+#include "boost\thread.hpp"
 
 void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 {
@@ -42,10 +43,16 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 
 	soundAnalyzer->SetFrequencyStep(musicSpectrumSize / niquistRate);
 
+	int index = 0;
+	boost::thread_group threadpool;
+
 	do{
 		res = dspSpectrum->getParameterData(FMOD_DSP_FFT_SPECTRUMDATA, (void **)&dataSpectrum, 0, 0, 0);
 		SpectrumSegment segment(musicSpectrumSize / 2, musicSpectrumSize / niquistRate);
-		for (int bin = 0; bin < dataSpectrum->length/2; bin++)
+		
+		threadpool.create_thread(boost::bind(&AnalyzerToolUtils::ExtractSpectrum, soundAnalyzer, *dataSpectrum, boost::ref(segment), index));
+
+		/*for (int bin = 0; bin < dataSpectrum->length/2; bin++)
 		{
 			val = 0;
 			for (int channel = 0; channel < dataSpectrum->numchannels; channel++)
@@ -55,10 +62,13 @@ void AnalyzerToolUtils::getSpectrum(SoundAnalyzer* soundAnalyzer)
 			segment.AddSegment(val);
 		}
 
-		soundAnalyzer->data.AddData(segment);
+		soundAnalyzer->data.AddData(segment);*/
 		soundAnalyzer->sys->update();
+		index++;
 		i += ((double)SPECTRUM_BUFFER_SIZE / (double)sampleRate) * 1000;
 	} while (i < (soundTime));
+
+	threadpool.join_all();
 }
 
 void AnalyzerToolUtils::ExtractSpectrum(SoundAnalyzer* soundAnalyzer,const FMOD_DSP_PARAMETER_FFT dataSpectrum, SpectrumSegment& segment, int index)

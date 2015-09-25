@@ -10,5 +10,5 @@ public:
 	static void			getSpectrum(SoundAnalyzer* outSoundAnalyzer);
 	static void			ExtractRange(const SoundAnalyzer& analyzer, SoundSpectrum& outRangedSpectrum);
 private:
-	void				AnalyzerToolUtils::ExtractSpectrum(SoundAnalyzer* soundAnalyzer, const FMOD_DSP_PARAMETER_FFT dataSpectrum, SpectrumSegment& segment, int index);
+	static void			AnalyzerToolUtils::ExtractSpectrum(SoundAnalyzer* soundAnalyzer, const FMOD_DSP_PARAMETER_FFT dataSpectrum, SpectrumSegment& segment, int index);
 };
