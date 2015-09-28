@@ -85,6 +85,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
     <ClCompile Include="MicRecorder.cpp" />
+    <ClCompile Include="MusicPlayer.cpp" />
     <ClCompile Include="OpenGLRenderer.cpp" />
     <ClCompile Include="RefSoundLib.cpp" />
     <ClCompile Include="SoundAnalyzer.cpp" />
@@ -107,6 +108,7 @@
     <ClInclude Include="Landmark.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="MicRecorder.h" />
+    <ClInclude Include="MusicPlayer.h" />
     <ClInclude Include="OpenGLRenderer.h" />
     <ClInclude Include="RefSoundLib.h" />
     <ClInclude Include="SoundAnalyzer.h" />
